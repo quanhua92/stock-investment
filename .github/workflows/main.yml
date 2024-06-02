@@ -1,0 +1,31 @@
+name: "Update stock data everyday"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    -   cron: "17 0 * * *"
+
+jobs:
+  export-jpegs:
+    runs-on: self-hosted
+    name: Export JPEGs
+    timeout-minutes: 30
+    steps:
+      -   uses: actions/checkout@v2
+      -   name: Set up Python 3.12
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.12
+      -   name: Setup dependencies
+          run: pip install -r requirements.txt
+      -   name: Remove old jpg
+          run: rm *.jpg
+      -   name: Run export jpg
+          run: python main.py
+      -   name: Commit changes
+          uses: elstudio/actions-js-build/commit@v3
+          with:
+            commitMessage: Automated snapshot
