@@ -185,7 +185,7 @@ def get_data(symbol, origin_date, end_date):
 end_date = datetime.now().strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
     for idx, origin_date in enumerate(list_origin_dates):
-        file_name = "{}_{}.jpg".format(group, idx)
+        file_name = "images/{}_{}.jpg".format(group, idx)
         if os.path.exists(file_name):
             print("Skip {}".format(file_name))
             continue

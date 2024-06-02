@@ -22,7 +22,7 @@ jobs:
       -   name: Setup dependencies
           run: pip install -r requirements.txt
       -   name: Remove old jpg
-          run: rm *.jpg
+          run: rm images/*.jpg
       -   name: Run export jpg
           run: python main.py
       -   name: Commit changes
