@@ -1,0 +1,3 @@
+vnstock3
+jupyter
+matplotlib
