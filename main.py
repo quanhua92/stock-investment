@@ -182,8 +182,14 @@ def get_data(symbol, origin_date, end_date):
         return None
 
 
+def get_cmap(n, name='hsv'):
+    '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 
+    RGB color; the keyword argument name must be a standard mpl colormap name.'''
+    return plt.get_cmap(name, n)
+
 end_date = datetime.now().strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
+    cmap = get_cmap(len(tickers))
     for idx, origin_date in enumerate(list_origin_dates):
         file_name = "images/{}_{}.jpg".format(group, idx)
         if os.path.exists(file_name):
@@ -191,15 +197,15 @@ for (group, tickers) in configs.items():
             continue
         fig, ax = plt.subplots()
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date))
-        for ticker in tickers:
+        for ticker_idx, ticker in enumerate(tickers):
             data_ticker = get_data(ticker, origin_date, end_date)
             if data_ticker is None:
                 continue
             last_value = data_ticker["close"].iloc[-1]
             label = '{} {:.2f}'.format(ticker, last_value)
-            data_ticker.plot(ax=ax, x='time', y='close', label=label)
+            data_ticker.plot(ax=ax, x='time', y='close', label=label, color=cmap(ticker_idx))
             ax.annotate('%0.2f' % last_value, xy=(1, last_value), xytext=(8, 0), 
-                     xycoords=('axes fraction', 'data'), textcoords='offset points')
+                     xycoords=('axes fraction', 'data'), textcoords='offset points', color=cmap(ticker_idx))
         
         plt.savefig(file_name)
         print("Saved {}".format(file_name))
