@@ -56,6 +56,7 @@ configs = {
     "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
     "BAN_LE": ["VNINDEX", "MWG", "FRT", "DGW", "PET", "AST", "DHT"],
     "BAT_DONG_SAN": [
+        "VNINDEX",
         "VHM",
         "VIC",
         "BCM",
@@ -69,6 +70,7 @@ configs = {
         "NTL",
     ],
     "TAI_CHINH": [
+        "VNINDEX",
         "SSI",
         "VND",
         "VCI",
@@ -84,6 +86,7 @@ configs = {
         "BVS",
     ],
     "HANG_CA_NHAN": [
+        "VNINDEX",
         "PNJ",
         "VGT",
         "TCM",
@@ -92,6 +95,7 @@ configs = {
         "RAL",
     ],
     "THUC_PHAM": [
+        "VNINDEX",
         "VNM",
         "MCH",
         "MSN",
@@ -106,6 +110,7 @@ configs = {
         "ANV",
     ],
     "TAI_NGUYEN": [
+        "VNINDEX",
         "HPG",
         "MSR",
         "HSG",
@@ -118,6 +123,7 @@ configs = {
         "PRT",
     ],
     "XAY_DUNG": [
+        "VNINDEX",
         "VGC",
         "HUT",
         "CTR",
@@ -131,6 +137,7 @@ configs = {
         "CII",
     ],
     "DIEN_NUOC_XANG": [
+        "VNINDEX",
         "GAS",
         "PGV",
         "VSH",
@@ -141,6 +148,7 @@ configs = {
         "NT2",
     ],
     "DAU_KHI": [
+        "VNINDEX",
         "BSR",
         "PLX",
         "PVS",
@@ -148,6 +156,7 @@ configs = {
         "OIL",
     ],
     "DICH_VU_CONG_NGHIEP": [
+        "VNINDEX",
         "ACV",
         "VEA",
         "GMD",
@@ -159,11 +168,13 @@ configs = {
         "VTP",
     ],
     "CONG_NGHE": [
+        "VNINDEX",
         "FPT",
         "CMG",
         "SAM",
     ],
     "BAO_HIEM": [
+        "VNINDEX",
         "BVH",
         "PVI",
         "VNR",
@@ -173,6 +184,7 @@ configs = {
         "ABI",
     ],
     "HOA_CHAT": [
+        "VNINDEX",
         "GVR",
         "DGC",
         "DCM",
@@ -181,6 +193,7 @@ configs = {
         "AAA",
     ],
     "OTO_PHU_TUNG":[
+        "VNINDEX",
         "DRC",
         "HHS",
         "CTF",
@@ -189,21 +202,24 @@ configs = {
         "HAX",
     ],
     "DU_LICH": [
+        "VNINDEX",
         "VJC",
         "SCS",
         "TSJ",
     ],
     "VIEN_THONG": [
+        "VNINDEX",
         "VGI",
         "FOX",
         "VEF",
         "VNZ"
     ],
     "Y_TE":[
+        "VNINDEX",
         "DHG",
-    "IMP",
-    "DVN",
-    "DBD",
+        "IMP",
+        "DVN",
+        "DBD",
     ]
 }
 
