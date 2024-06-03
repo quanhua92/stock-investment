@@ -26,6 +26,7 @@ MY_ID_MAPPING = {
     "ADA": "c2114",
     "SOL": "c2116",
     "DOGE": "c2119",
+    "TON": "c23br",
     
     "SPX": "a33k6h",
     "DJI": "a6qja2",
@@ -51,7 +52,7 @@ def is_crypto_group(name):
 
 configs = {
     "INDEX": ["GOLD", "SPX", "DJI", "NDX", "VNI", "JAPAN", "NYSE"],
-    "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE"],
+    "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE", "TON"],
     "FOREX": ["USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
     "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
     "BAN_LE": ["VNINDEX", "MWG", "FRT", "DGW", "PET", "AST", "DHT"],
