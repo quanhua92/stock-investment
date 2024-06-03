@@ -16,16 +16,16 @@ stock = Vnstock().stock(symbol="FRT", source="VCI")
 list_origin_dates = ["2024-02-01", "2024-03-01", "2024-04-01", "2024-05-02"]
 
 MY_ID_MAPPING = {
-    # "BTC": "c2111",
-    # "ETH": "c2112",
-    # "USDT": "c2115",
-    # "USDC": "c211a", 
-    # "BNB": "c2113",
-    # "BUSD": "c211i",
-    # "XRP": "c2117",
-    # "ADA": "c2114",
-    # "SOL": "c2116",
-    # "DOGE": "c2119",
+    "BTC": "c2111",
+    "ETH": "c2112",
+    "USDT": "c2115",
+    "USDC": "c211a", 
+    "BNB": "c2113",
+    "BUSD": "c211i",
+    "XRP": "c2117",
+    "ADA": "c2114",
+    "SOL": "c2116",
+    "DOGE": "c2119",
     
     "SPX": "a33k6h",
     "DJI": "a6qja2",
@@ -48,7 +48,7 @@ def is_stock_group(name):
 
 configs = {
     "INDEX": ["SPX", "DJI", "GOLD", "NDX", "VNI", "JAPAN", "NYSE"],
-    # "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "BUSD", "XRP", "ADA", "SOL", "DOGE"],
+    "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE"],
     "FOREX": ["USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
     "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
     "BAN_LE": ["VNINDEX", "MWG", "FRT", "DGW", "PET", "AST", "DHT"],
@@ -209,6 +209,10 @@ def get_data(is_stock, symbol, origin_date, end_date, start_date="2023-01-01"):
         if is_stock:
             df = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
         else:
+            if origin_date == "2024-03-01":
+                origin_date = "2024-03-02"
+            if origin_date == "2024-05-02":
+                origin_date = "2024-05-01"
             symbol_id = MY_ID_MAPPING[symbol]
             quote = Quote(symbol_id=symbol_id)
             df = quote.history(start=start_date, end=end_date, interval='1D')
@@ -248,7 +252,7 @@ for (group, tickers) in configs.items():
     for idx, origin_date in enumerate(list_origin_dates):
         file_name = "images/{}_{}.jpg".format(group, idx)
         if os.path.exists(file_name):
-            print("Skip {}".format(file_name))
+            # print("Skip {}".format(file_name))
             continue
         fig, ax = plt.subplots(figsize=(15, 10))
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date), fontsize=20, weight='bold')

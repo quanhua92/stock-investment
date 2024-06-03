@@ -2,6 +2,7 @@
 
 - [Index](#index)
 - [Forex](#forex)
+- [Crypto](#crypto)
 - [Ngân hàng](#ngan_hang)
 - [Bán lẻ](#ban_le)
 - [Bất động sản](#bat_dong_san)
@@ -32,6 +33,12 @@
 !["FOREX_1"](images/FOREX_1.jpg)
 !["FOREX_2"](images/FOREX_2.jpg)
 !["FOREX_3"](images/FOREX_3.jpg)
+
+# CRYPTO
+!["CRYPTO_0"](images/CRYPTO_0.jpg)
+!["CRYPTO_1"](images/CRYPTO_1.jpg)
+!["CRYPTO_2"](images/CRYPTO_2.jpg)
+!["CRYPTO_3"](images/CRYPTO_3.jpg)
 
 # NGAN_HANG
 !["NGAN_HANG_0"](images/NGAN_HANG_0.jpg)
