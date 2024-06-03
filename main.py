@@ -46,6 +46,9 @@ MY_ID_MAPPING = {
 def is_stock_group(name):
     return name not in ["INDEX", "CRYPTO", "FOREX"]
 
+def is_crypto_group(name):
+    return name in ["CRYPTO"]
+
 configs = {
     "INDEX": ["SPX", "DJI", "GOLD", "NDX", "VNI", "JAPAN", "NYSE"],
     "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE"],
@@ -204,18 +207,22 @@ configs = {
     ]
 }
 
-def get_data(is_stock, symbol, origin_date, end_date, start_date="2023-01-01"):
+def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="2023-01-01"):
     try:
         if is_stock:
             df = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
         else:
-            if origin_date == "2024-03-01":
-                origin_date = "2024-03-02"
-            if origin_date == "2024-05-02":
-                origin_date = "2024-05-01"
-            symbol_id = MY_ID_MAPPING[symbol]
-            quote = Quote(symbol_id=symbol_id)
-            df = quote.history(start=start_date, end=end_date, interval='1D')
+            if symbol == "VNI":
+                df = stock.quote.history(symbol="VNINDEX", start=start_date, end=end_date)
+            else:
+                if is_crypto:
+                    if origin_date == "2024-03-01":
+                        origin_date = "2024-03-02"
+                    if origin_date == "2024-05-02":
+                        origin_date = "2024-05-01"
+                symbol_id = MY_ID_MAPPING[symbol]
+                quote = Quote(symbol_id=symbol_id)
+                df = quote.history(start=start_date, end=end_date, interval='1D')
         origin_close = float(df[df["time"] == origin_date]["close"].iloc[0])
         scale = origin_close / 100
         data = df[["time", "close"]]
@@ -232,7 +239,7 @@ def get_cmap(n, name='hsv'):
     return plt.get_cmap(name, n)
 
 def get_colors(n):
-    colors = ["#e2d454", "#26c6da", "#fbc02d", "#673ab7", "#4caf50", "#00bfa5", "#ff5252", "#f48fb1", "#82b1ff", "#00e5ff", "#0048ff", "#1eff00", "#ff6600", "#3a6630", "#305666"]
+    colors = ["#ffe50b", "#12bfff", "#e48128", "#8e4eff", "#59f05f", "#2cecd2", "#ff3939", "#ff79a6", "#82b1ff", "#3983ff", "#ff00ae", "#1eff00", "#ff6600", "#1d9502", "#1d789f"]
     if n <= len(colors):
         return colors[0:n]
     
@@ -248,6 +255,7 @@ plt.style.use('dark_background')
 end_date = datetime.now().strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
     is_stock = is_stock_group(group)
+    is_crypto = is_crypto_group(group)
     ticker_colors = get_colors(len(tickers))
     for idx, origin_date in enumerate(list_origin_dates):
         file_name = "images/{}_{}.jpg".format(group, idx)
@@ -256,11 +264,13 @@ for (group, tickers) in configs.items():
             continue
         fig, ax = plt.subplots(figsize=(15, 10))
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date), fontsize=20, weight='bold')
+        is_valid = False
         for ticker_idx, ticker in enumerate(tickers):
-            data_ticker = get_data(is_stock, ticker, origin_date, end_date)
+            data_ticker = get_data(is_stock, is_crypto, ticker, origin_date, end_date)
             color = ticker_colors[ticker_idx]
             if data_ticker is None:
                 continue
+            is_valid = True
             last_value = data_ticker["close"].iloc[-1]
             label = '{} {:.2f}'.format(ticker, last_value)
             data_ticker.plot(ax=ax, x='time', y='close', label=label, color=color)
@@ -268,7 +278,8 @@ for (group, tickers) in configs.items():
                      xycoords=('axes fraction', 'data'), textcoords='offset points', 
                      color=color, fontsize=12, weight='bold')
         
-        plt.savefig(file_name)
-        print("Saved {}".format(file_name))
+        if is_valid:
+            plt.savefig(file_name)
+            print("Saved {}".format(file_name))
         plt.close()
         # plt.show()
