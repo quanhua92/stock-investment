@@ -199,6 +199,8 @@ def get_colors(n):
         outputs.append(cmap(i))
     return outputs
 
+plt.style.use('dark_background')
+
 end_date = datetime.now().strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
     
@@ -209,7 +211,7 @@ for (group, tickers) in configs.items():
             print("Skip {}".format(file_name))
             continue
         fig, ax = plt.subplots(figsize=(15, 10))
-        ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date))
+        ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date), fontsize=20, weight='bold')
         for ticker_idx, ticker in enumerate(tickers):
             data_ticker = get_data(ticker, origin_date, end_date)
             color = ticker_colors[ticker_idx]
