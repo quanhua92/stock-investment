@@ -50,7 +50,7 @@ def is_crypto_group(name):
     return name in ["CRYPTO"]
 
 configs = {
-    "INDEX": ["SPX", "DJI", "GOLD", "NDX", "VNI", "JAPAN", "NYSE"],
+    "INDEX": ["GOLD", "SPX", "DJI", "NDX", "VNI", "JAPAN", "NYSE"],
     "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE"],
     "FOREX": ["USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
     "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
