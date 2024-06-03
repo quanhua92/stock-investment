@@ -32,7 +32,7 @@ MY_ID_MAPPING = {
     "DJI": "a6qja2",
     "GOLD": "b1hb7w",
     "NDX":"a3yy77",
-    "VNI": "aqk2nm",
+    "VNINDEX": "aqk2nm",
     "JAPAN": "c1uvw7",
     "NYSE": "a74pqh",
     
@@ -51,9 +51,9 @@ def is_crypto_group(name):
     return name in ["CRYPTO"]
 
 configs = {
-    "INDEX": ["GOLD", "SPX", "DJI", "NDX", "VNI", "JAPAN", "NYSE"],
-    "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE", "TON"],
-    "FOREX": ["USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
+    "INDEX": ["VNINDEX", "GOLD", "SPX", "DJI", "NDX", "JAPAN", "NYSE"],
+    "CRYPTO": ["VNINDEX", "BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE", "TON"],
+    "FOREX": ["VNINDEX", "USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
     "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
     "BAN_LE": ["VNINDEX", "MWG", "FRT", "DGW", "PET", "AST", "DHT"],
     "BAT_DONG_SAN": [
@@ -206,7 +206,7 @@ configs = {
         "VNINDEX",
         "VJC",
         "SCS",
-        "TSJ",
+        # "TSJ",
     ],
     "VIEN_THONG": [
         "VNINDEX",
@@ -229,7 +229,7 @@ def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="202
         if is_stock:
             df = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
         else:
-            if symbol == "VNI":
+            if symbol == "VNINDEX":
                 df = stock.quote.history(symbol="VNINDEX", start=start_date, end=end_date)
             else:
                 if is_crypto:
