@@ -1,3 +1,4 @@
-vnstock3
 jupyter
+vnstock3
 matplotlib
+seaborn

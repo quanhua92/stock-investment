@@ -9,11 +9,47 @@ import matplotlib.pyplot as plt
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
+from vnstock3.explorer.msn.quote import *
+
 stock = Vnstock().stock(symbol="FRT", source="VCI")
 
 list_origin_dates = ["2024-02-01", "2024-03-01", "2024-04-01", "2024-05-02"]
 
+MY_ID_MAPPING = {
+    # "BTC": "c2111",
+    # "ETH": "c2112",
+    # "USDT": "c2115",
+    # "USDC": "c211a", 
+    # "BNB": "c2113",
+    # "BUSD": "c211i",
+    # "XRP": "c2117",
+    # "ADA": "c2114",
+    # "SOL": "c2116",
+    # "DOGE": "c2119",
+    
+    "SPX": "a33k6h",
+    "DJI": "a6qja2",
+    "GOLD": "b1hb7w",
+    "NDX":"a3yy77",
+    "VNI": "aqk2nm",
+    "JAPAN": "c1uvw7",
+    "NYSE": "a74pqh",
+    
+    "USDEUR": "avyn9c",
+    "USDVND": "avyufr",
+    "JPYVND": "ave8sm",
+    "AUDVND": "auxrkr",
+    "EURVND": "av93ec",
+    "GBPVND": "avyjtc",
+}
+
+def is_stock_group(name):
+    return name not in ["INDEX", "CRYPTO", "FOREX"]
+
 configs = {
+    "INDEX": ["SPX", "DJI", "GOLD", "NDX", "VNI", "JAPAN", "NYSE"],
+    # "CRYPTO": ["BTC", "ETH", "USDT", "USDC", "BNB", "BUSD", "XRP", "ADA", "SOL", "DOGE"],
+    "FOREX": ["USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
     "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
     "BAN_LE": ["VNINDEX", "MWG", "FRT", "DGW", "PET", "AST", "DHT"],
     "BAT_DONG_SAN": [
@@ -168,17 +204,21 @@ configs = {
     ]
 }
 
-def get_data(symbol, origin_date, end_date):
+def get_data(is_stock, symbol, origin_date, end_date, start_date="2023-01-01"):
     try:
-        df = stock.quote.history(symbol=symbol, start="2023-01-01", end=end_date)
+        if is_stock:
+            df = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
+        else:
+            symbol_id = MY_ID_MAPPING[symbol]
+            quote = Quote(symbol_id=symbol_id)
+            df = quote.history(start=start_date, end=end_date, interval='1D')
         origin_close = float(df[df["time"] == origin_date]["close"].iloc[0])
         scale = origin_close / 100
-        
         data = df[["time", "close"]]
         data["close"] = data["close"].div(scale)
         return data[data["time"] >= origin_date]
-    except:
-        print("Error: {} {} {}".format(symbol, origin_date, end_date))
+    except Exception as e:
+        print("Error {}: {} {} {} {}".format(e, is_stock, symbol, origin_date, end_date))
         return None
 
 
@@ -203,7 +243,7 @@ plt.style.use('dark_background')
 
 end_date = datetime.now().strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
-    
+    is_stock = is_stock_group(group)
     ticker_colors = get_colors(len(tickers))
     for idx, origin_date in enumerate(list_origin_dates):
         file_name = "images/{}_{}.jpg".format(group, idx)
@@ -213,7 +253,7 @@ for (group, tickers) in configs.items():
         fig, ax = plt.subplots(figsize=(15, 10))
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date), fontsize=20, weight='bold')
         for ticker_idx, ticker in enumerate(tickers):
-            data_ticker = get_data(ticker, origin_date, end_date)
+            data_ticker = get_data(is_stock, ticker, origin_date, end_date)
             color = ticker_colors[ticker_idx]
             if data_ticker is None:
                 continue
@@ -222,7 +262,7 @@ for (group, tickers) in configs.items():
             data_ticker.plot(ax=ax, x='time', y='close', label=label, color=color)
             ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
                      xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                     color=color, fontsize=15, weight='bold')
+                     color=color, fontsize=12, weight='bold')
         
         plt.savefig(file_name)
         print("Saved {}".format(file_name))
