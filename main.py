@@ -187,25 +187,40 @@ def get_cmap(n, name='hsv'):
     RGB color; the keyword argument name must be a standard mpl colormap name.'''
     return plt.get_cmap(name, n)
 
+def get_colors(n):
+    colors = ["#e2d454", "#26c6da", "#fbc02d", "#673ab7", "#4caf50", "#00bfa5", "#ff5252", "#f48fb1", "#82b1ff", "#00e5ff", "#0048ff", "#1eff00", "#ff6600", "#3a6630", "#305666"]
+    if n <= len(colors):
+        return colors[0:n]
+    
+    outputs = list(colors)
+    m = n - len(outputs)
+    cmap = get_cmap(m)
+    for i in range(m):
+        outputs.append(cmap(i))
+    return outputs
+
 end_date = datetime.now().strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
-    cmap = get_cmap(len(tickers))
+    
+    ticker_colors = get_colors(len(tickers))
     for idx, origin_date in enumerate(list_origin_dates):
         file_name = "images/{}_{}.jpg".format(group, idx)
         if os.path.exists(file_name):
             print("Skip {}".format(file_name))
             continue
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(15, 10))
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date))
         for ticker_idx, ticker in enumerate(tickers):
             data_ticker = get_data(ticker, origin_date, end_date)
+            color = ticker_colors[ticker_idx]
             if data_ticker is None:
                 continue
             last_value = data_ticker["close"].iloc[-1]
             label = '{} {:.2f}'.format(ticker, last_value)
-            data_ticker.plot(ax=ax, x='time', y='close', label=label, color=cmap(ticker_idx))
-            ax.annotate('%0.2f' % last_value, xy=(1, last_value), xytext=(8, 0), 
-                     xycoords=('axes fraction', 'data'), textcoords='offset points', color=cmap(ticker_idx))
+            data_ticker.plot(ax=ax, x='time', y='close', label=label, color=color)
+            ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
+                     xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                     color=color, fontsize=15, weight='bold')
         
         plt.savefig(file_name)
         print("Saved {}".format(file_name))
