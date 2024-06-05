@@ -21,6 +21,11 @@
 - [Du lịch](#du_lich)
 - [Viễn thông](#vien_thong)
 - [Y tế](#y_te)
+- [Danh mục](#danh_muc)
+  - [GROUP_BIG_CAP](#port_group_big_cap)
+  - [GROUP_TOP_1](#port_group_top_1)
+  - [QH](#port_qh)
+  - [MT](#port_mt)
 
 # INDEX
 !["INDEX_0"](images/INDEX_0.jpg)
@@ -130,3 +135,29 @@
 !["Y_TE_1"](images/Y_TE_1.jpg)
 !["Y_TE_2"](images/Y_TE_2.jpg)
 !["Y_TE_3"](images/Y_TE_3.jpg)
+
+# DANH_MUC
+
+## PORT_GROUP_BIG_CAP
+!["PORT_GROUP_BIG_CAP_0"](images/PORT_GROUP_BIG_CAP_0.jpg)
+!["PORT_GROUP_BIG_CAP_1"](images/PORT_GROUP_BIG_CAP_1.jpg)
+!["PORT_GROUP_BIG_CAP_2"](images/PORT_GROUP_BIG_CAP_2.jpg)
+!["PORT_GROUP_BIG_CAP_3"](images/PORT_GROUP_BIG_CAP_3.jpg)
+
+## PORT_GROUP_TOP_1
+!["PORT_GROUP_TOP_1_0"](images/PORT_GROUP_TOP_1_0.jpg)
+!["PORT_GROUP_TOP_1_1"](images/PORT_GROUP_TOP_1_1.jpg)
+!["PORT_GROUP_TOP_1_2"](images/PORT_GROUP_TOP_1_2.jpg)
+!["PORT_GROUP_TOP_1_3"](images/PORT_GROUP_TOP_1_3.jpg)
+
+## PORT_QH
+!["PORT_QH_0"](images/PORT_QH_0.jpg)
+!["PORT_QH_1"](images/PORT_QH_1.jpg)
+!["PORT_QH_2"](images/PORT_QH_2.jpg)
+!["PORT_QH_3"](images/PORT_QH_3.jpg)
+
+## PORT_MT
+!["PORT_MT_0"](images/PORT_MT_0.jpg)
+!["PORT_MT_1"](images/PORT_MT_1.jpg)
+!["PORT_MT_2"](images/PORT_MT_2.jpg)
+!["PORT_MT_3"](images/PORT_MT_3.jpg)

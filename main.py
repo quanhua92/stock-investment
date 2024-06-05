@@ -221,7 +221,39 @@ configs = {
         "IMP",
         "DVN",
         "DBD",
-    ]
+    ],
+    "PORT_GROUP_BIG_CAP": [
+        "VNINDEX",
+        "VCB", "MWG", "VHM", "SSI", "PNJ", "VNM", "HPG", "VGC",
+        "GAS", "BSR", "ACV", "FPT", "BVH", "GVR", "DRC", "VJC",
+        # "VGI"
+        
+    ],
+    "PORT_GROUP_TOP_1": [
+        "VNINDEX",
+        "TCB", "DHT", "TCH", "BVS", "VGT", "MCH", "KSV", "VCS",
+        "POW", "BSR", "ACV", "CMG", "MIG", "DCM", "HAX", "SCS",
+        "FOX"
+    ],
+    "PORT_QH": [
+        "VNINDEX",
+        "BSR",
+        "CTS",
+        "DCM",
+        "HAG",
+        "LPB",
+        "MBS",
+        "MWG",
+        "PLX",
+        "PVT",
+        "TCH"
+    ],
+    "PORT_MT": [
+        "VNINDEX",
+        "VNM", "MWG", "SSI", "FRT", "ANV", "NKG", "AGG", "VCB",
+        "QNS", "MBB", "HPG", "KBC", "TCB", "CII", "FUEVFVND",
+        "DRC", "IDC", "PNJ", "ABB", "MSN", "CTG", "PVD"
+    ],
 }
 
 def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="2023-01-01"):
