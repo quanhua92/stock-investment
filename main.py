@@ -3,7 +3,7 @@ if "ACCEPT_TC" not in os.environ:
     os.environ["ACCEPT_TC"] = "tôi đồng ý"
 
 from vnstock3 import Vnstock
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import matplotlib.pyplot as plt 
 
 import pandas as pd
@@ -301,7 +301,8 @@ def get_colors(n):
 
 plt.style.use('dark_background')
 
-end_date = datetime.now().strftime("%Y-%m-%d")
+now = datetime.now(tz=timezone(timedelta(hours=7)))
+end_date = now.strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
     is_stock = is_stock_group(group)
     is_crypto = is_crypto_group(group)
@@ -312,7 +313,7 @@ for (group, tickers) in configs.items():
             # print("Skip {}".format(file_name))
             continue
         fig, ax = plt.subplots(figsize=(15, 10))
-        ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, end_date), fontsize=20, weight='bold')
+        ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
         is_valid = False
         for ticker_idx, ticker in enumerate(tickers):
             data_ticker = get_data(is_stock, is_crypto, ticker, origin_date, end_date)
