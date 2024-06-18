@@ -1,8 +1,6 @@
 # Table of Contents
 
 - [Index](#index)
-- [Forex](#forex)
-- [Crypto](#crypto)
 - [Ngân hàng](#ngan_hang)
 - [Bán lẻ](#ban_le)
 - [Bất động sản](#bat_dong_san)
@@ -26,24 +24,14 @@
   - [GROUP_TOP_1](#port_group_top_1)
   - [QH](#port_qh)
   - [MT](#port_mt)
+- [Forex](#forex)
+- [Crypto](#crypto)
 
 # INDEX
 !["INDEX_0"](images/INDEX_0.jpg)
 !["INDEX_1"](images/INDEX_1.jpg)
 !["INDEX_2"](images/INDEX_2.jpg)
 !["INDEX_3"](images/INDEX_3.jpg)
-
-# FOREX
-!["FOREX_0"](images/FOREX_0.jpg)
-!["FOREX_1"](images/FOREX_1.jpg)
-!["FOREX_2"](images/FOREX_2.jpg)
-!["FOREX_3"](images/FOREX_3.jpg)
-
-# CRYPTO
-!["CRYPTO_0"](images/CRYPTO_0.jpg)
-!["CRYPTO_1"](images/CRYPTO_1.jpg)
-!["CRYPTO_2"](images/CRYPTO_2.jpg)
-!["CRYPTO_3"](images/CRYPTO_3.jpg)
 
 # NGAN_HANG
 !["NGAN_HANG_0"](images/NGAN_HANG_0.jpg)
@@ -161,3 +149,15 @@
 !["PORT_MT_1"](images/PORT_MT_1.jpg)
 !["PORT_MT_2"](images/PORT_MT_2.jpg)
 !["PORT_MT_3"](images/PORT_MT_3.jpg)
+
+# FOREX
+!["FOREX_0"](images/FOREX_0.jpg)
+!["FOREX_1"](images/FOREX_1.jpg)
+!["FOREX_2"](images/FOREX_2.jpg)
+!["FOREX_3"](images/FOREX_3.jpg)
+
+# CRYPTO
+!["CRYPTO_0"](images/CRYPTO_0.jpg)
+!["CRYPTO_1"](images/CRYPTO_1.jpg)
+!["CRYPTO_2"](images/CRYPTO_2.jpg)
+!["CRYPTO_3"](images/CRYPTO_3.jpg)

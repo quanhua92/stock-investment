@@ -13,7 +13,7 @@ from vnstock3.explorer.msn.quote import *
 
 stock = Vnstock().stock(symbol="FRT", source="VCI")
 
-list_origin_dates = ["2024-02-01", "2024-03-01", "2024-04-01", "2024-05-02"]
+list_origin_dates = ["2024-03-01", "2024-04-01", "2024-05-02", "2024-06-03"]
 
 MY_ID_MAPPING = {
     "BTC": "c2111",
@@ -101,7 +101,6 @@ configs = {
         "MCH",
         "MSN",
         "SAB",
-        "VSF",
         "KDC",
         "QNS",
         "VHC",
@@ -246,7 +245,8 @@ configs = {
         "MWG",
         "PLX",
         "PVT",
-        "TCH"
+        "TCH",
+        "TCM"
     ],
     "PORT_MT": [
         "VNINDEX",
