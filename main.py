@@ -231,6 +231,14 @@ configs = {
         "POW", "BSR", "ACV", "CMG", "MIG", "DCM", "HAX", "SCS",
         "FOX"
     ],
+    "PORT_LONG_TERM": [
+        "VNINDEX",
+        "LPB",
+        "NTL",
+        "MWG",
+        "DCM",
+        "FPT"
+    ],
     "PORT_QH": [
         "VNINDEX",
         "BSR",
