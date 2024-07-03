@@ -161,7 +161,6 @@ configs = {
         "VEA",
         "GMD",
         "REE",
-        "MVN",
         "GEX",
         "GEE",
         "PVT",
@@ -205,7 +204,7 @@ configs = {
         "VNINDEX",
         "VJC",
         "SCS",
-        # "TSJ",
+        "HVN",
     ],
     "VIEN_THONG": [
         "VNINDEX",
@@ -225,8 +224,6 @@ configs = {
         "VNINDEX",
         "VCB", "MWG", "VHM", "SSI", "PNJ", "VNM", "HPG", "VGC",
         "GAS", "BSR", "ACV", "FPT", "BVH", "GVR", "DRC", "VJC",
-        # "VGI"
-        
     ],
     "PORT_GROUP_TOP_1": [
         "VNINDEX",
@@ -246,7 +243,6 @@ configs = {
         "PLX",
         "PVT",
         "TCH",
-        "TCM"
     ],
     "PORT_MT": [
         "VNINDEX",
