@@ -260,10 +260,10 @@ configs = {
     ],
 }
 
-def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="2023-01-01"):
+def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="2024-01-01"):
     try:
         if is_stock:
-            df = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
+            df = stock.quote.history(symbol=symbol, start=start_date, end=end_date, interval='1D')
         else:
             if symbol == "VNINDEX":
                 df = stock.quote.history(symbol="VNINDEX", start=start_date, end=end_date)
@@ -276,12 +276,19 @@ def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="202
                 symbol_id = MY_ID_MAPPING[symbol]
                 quote = Quote(symbol_id=symbol_id)
                 df = quote.history(start=start_date, end=end_date, interval='1D')
+    except Exception as e:
+        print("Error {}: {} {} {} {}".format(e, is_stock, symbol, origin_date, end_date))
+        return None
+    # convert time to format yyyy-mm-dd
+    df["time"] = df["time"].dt.strftime('%Y-%m-%d')
+    try:
         origin_close = float(df[df["time"] == origin_date]["close"].iloc[0])
         scale = origin_close / 100
         data = df[["time", "close"]]
         data["close"] = data["close"].div(scale)
         return data[data["time"] >= origin_date]
     except Exception as e:
+        print("Error with df: {}".format(df))
         print("Error {}: {} {} {} {}".format(e, is_stock, symbol, origin_date, end_date))
         return None
 
