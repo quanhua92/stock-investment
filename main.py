@@ -63,11 +63,12 @@ def get_data(symbol, origin_date, end_date, start_date="2024-01-01", group=None)
         try:
             origin_close = float(df[df["time_str"] == origin_date_str]["close"].iloc[0])
             scale = origin_close / 100
-            data = df[["time", "close", "time_str"]]
+            data = df[["time", "close"]]
             data["close"] = data["close"].div(scale)
             if offset > 0:
                 print("Fixed symbol {} with offset = {} new_date = {}".format(symbol, offset, origin_date_str))
-            return data[data["time_str"] >= origin_date_str]
+            dt_origin_date_str = datetime.strptime(origin_date_str, '%Y-%m-%d')
+            return data[data["time"] >= dt_origin_date_str]
         except Exception as e:
             err = e
     print("Error with df:\n{}".format(df))
