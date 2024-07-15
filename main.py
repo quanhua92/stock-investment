@@ -30,6 +30,7 @@ MY_ID_MAPPING = {
     "GOOG": "a1u3p2",
     "TSLA": "a24kar",
     "PALL": "a1zgdm",
+    "PFE": "a1zqnm",
     
     "SPX": "a33k6h",
     "DJI": "a6qja2",
@@ -54,7 +55,7 @@ def is_crypto_group(name):
     return name in ["CRYPTO", "US"]
 
 configs = {
-    "US": ["VNINDEX", "SPX", "DJI", "NDX", "GOOG", "TSLA", "PALL"],
+    "US": ["VNINDEX", "SPX", "DJI", "NDX", "GOOG", "TSLA", "PALL", "PFE"],
     "INDEX": ["VNINDEX", "GOLD", "SPX", "DJI", "NDX", "JAPAN", "NYSE"],
     "CRYPTO": ["VNINDEX", "BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE", "TON"],
     "FOREX": ["VNINDEX", "USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
