@@ -27,6 +27,9 @@ MY_ID_MAPPING = {
     "SOL": "c2116",
     "DOGE": "c2119",
     "TON": "c23br",
+    "GOOG": "a1u3p2",
+    "TSLA": "a24kar",
+    "PALL": "a1zgdm",
     
     "SPX": "a33k6h",
     "DJI": "a6qja2",
@@ -45,12 +48,13 @@ MY_ID_MAPPING = {
 }
 
 def is_stock_group(name):
-    return name not in ["INDEX", "CRYPTO", "FOREX"]
+    return name not in ["INDEX", "CRYPTO", "FOREX", "US"]
 
 def is_crypto_group(name):
-    return name in ["CRYPTO"]
+    return name in ["CRYPTO", "US"]
 
 configs = {
+    "US": ["VNINDEX", "SPX", "DJI", "NDX", "GOOG", "TSLA", "PALL"],
     "INDEX": ["VNINDEX", "GOLD", "SPX", "DJI", "NDX", "JAPAN", "NYSE"],
     "CRYPTO": ["VNINDEX", "BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE", "TON"],
     "FOREX": ["VNINDEX", "USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
