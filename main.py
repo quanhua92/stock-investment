@@ -38,7 +38,7 @@ print("MSN_ID_MAPPING keys = ", MSN_ID_MAPPING.keys())
 configs = json.load(open("config_tickers.json"))
 print("configs keys = ", configs.keys())
 
-def get_data(symbol, origin_date, end_date, start_date="2024-01-01"):
+def get_data(symbol, origin_date, end_date, start_date="2024-01-01", group=None):
     try:
         is_vnstock = symbol not in MSN_ID_MAPPING or symbol == "VNINDEX"
         if is_vnstock:
@@ -52,19 +52,31 @@ def get_data(symbol, origin_date, end_date, start_date="2024-01-01"):
         return None
     # convert time to format yyyy-mm-dd
     df["time"] = df["time"].dt.strftime('%Y-%m-%d')
-    try:
-        origin_close = float(df[df["time"] == origin_date]["close"].iloc[0])
-        scale = origin_close / 100
-        data = df[["time", "close"]]
-        data["close"] = data["close"].div(scale)
-        return data[data["time"] >= origin_date]
-    except Exception as e:
-        print("Error with df: \n{}".format(df))
-        print("Error {}: is_vnstock {} {} {} {}".format(e, is_vnstock, symbol, origin_date, end_date))
-        print("1\n", df["time"] == origin_date)
-        print("2\n", df[df["time"] == origin_date])
-        return None
 
+    is_crypto = group == "CRYPTO"
+
+    origin_date_str = origin_date
+    err = None
+    for offset in range(7):
+        if offset > 0:
+            cur_date = datetime.strptime(origin_date, '%Y-%m-%d')
+            cur_date = cur_date - relativedelta(days=offset)
+            origin_date_str = cur_date.strftime('%Y-%m-%d')
+        try:
+            origin_close = float(df[df["time"] == origin_date_str]["close"].iloc[0])
+            scale = origin_close / 100
+            data = df[["time", "close"]]
+            data["close"] = data["close"].div(scale)
+            if offset > 0:
+                print("Fixed symbol {} with offset = {} new_date = {}".format(symbol, offset, origin_date_str))
+            return data[data["time"] >= origin_date_str]
+        except Exception as e:
+            err = e
+            if not is_crypto:
+                break
+    print("Error with df:\n{}".format(df))
+    print("Error {}: is_vnstock {} {} {} {}".format(err, is_vnstock, symbol, origin_date, end_date))
+    return None
 
 def get_cmap(n, name='hsv'):
     '''Returns a function that maps each index in 0, 1, ..., n-1 to a distinct 
@@ -98,7 +110,7 @@ for (group, tickers) in configs.items():
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
         is_valid = False
         for ticker_idx, ticker in enumerate(tickers):
-            data_ticker = get_data(ticker, origin_date, end_date)
+            data_ticker = get_data(ticker, origin_date, end_date, group=group)
             color = ticker_colors[ticker_idx]
             if data_ticker is None:
                 continue
