@@ -2,8 +2,10 @@ import os
 if "ACCEPT_TC" not in os.environ:
     os.environ["ACCEPT_TC"] = "tôi đồng ý"
 
+import json
 from vnstock3 import Vnstock
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone, timedelta, date
+from dateutil.relativedelta import relativedelta, MO
 import matplotlib.pyplot as plt 
 
 import pandas as pd
@@ -11,278 +13,42 @@ pd.options.mode.chained_assignment = None
 
 from vnstock3.explorer.msn.quote import *
 
-stock = Vnstock().stock(symbol="FRT", source="VCI")
+vnstock = Vnstock().stock(symbol="FRT", source="VCI")
 
-list_origin_dates = ["2024-03-01", "2024-04-01", "2024-05-02", "2024-06-03"]
+# load holiday
+df = pd.read_csv("holiday_mapping.csv", header=None, names=['from', 'to'])
+HOLIDAY_MAPPING = {k: v for k,v in zip(df["from"], df["to"])}
+print("HOLIDAY_MAPPING", HOLIDAY_MAPPING)
 
-MY_ID_MAPPING = {
-    "BTC": "c2111",
-    "ETH": "c2112",
-    "USDT": "c2115",
-    "USDC": "c211a", 
-    "BNB": "c2113",
-    "BUSD": "c211i",
-    "XRP": "c2117",
-    "ADA": "c2114",
-    "SOL": "c2116",
-    "DOGE": "c2119",
-    "TON": "c23br",
-    "GOOG": "a1u3p2",
-    "TSLA": "a24kar",
-    "PALL": "a1zgdm",
-    "PFE": "a1zqnm",
-    
-    "SPX": "a33k6h",
-    "DJI": "a6qja2",
-    "GOLD": "b1hb7w",
-    "NDX":"a3yy77",
-    "VNINDEX": "aqk2nm",
-    "JAPAN": "c1uvw7",
-    "NYSE": "a74pqh",
-    
-    "USDEUR": "avyn9c",
-    "USDVND": "avyufr",
-    "JPYVND": "ave8sm",
-    "AUDVND": "auxrkr",
-    "EURVND": "av93ec",
-    "GBPVND": "avyjtc",
-}
+# prepare origin dates
+today = date.today()
+list_origin_dates = []
+for month_delta in reversed(range(4)):
+    origin_date = today - relativedelta(day=1, weekday=MO(1), months=month_delta)
+    origin_date = origin_date.strftime('%Y-%m-%d')
+    origin_date = HOLIDAY_MAPPING.get(origin_date, origin_date)
+    list_origin_dates.append(origin_date)
+print("list_origin_dates", list_origin_dates)
 
-def is_stock_group(name):
-    return name not in ["INDEX", "CRYPTO", "FOREX", "US"]
+# load msn id mapping
+df = pd.read_csv("msn_id_mapping.csv", header=None, names=['ticker', 'id'])
+MSN_ID_MAPPING = {k: v for k,v in zip(df["ticker"], df["id"])}
+print("MSN_ID_MAPPING keys = ", MSN_ID_MAPPING.keys())
 
-def is_crypto_group(name):
-    return name in ["CRYPTO", "US"]
+configs = json.load(open("config_tickers.json"))
+print("configs keys = ", configs.keys())
 
-configs = {
-    "US": ["VNINDEX", "SPX", "DJI", "NDX", "GOOG", "TSLA", "PALL", "PFE"],
-    "INDEX": ["VNINDEX", "GOLD", "SPX", "DJI", "NDX", "JAPAN", "NYSE"],
-    "CRYPTO": ["VNINDEX", "BTC", "ETH", "USDT", "USDC", "BNB", "XRP", "ADA", "SOL", "DOGE", "TON"],
-    "FOREX": ["VNINDEX", "USDEUR", "USDVND", "JPYVND", "AUDVND", "EURVND", "GBPVND"],
-    "NGAN_HANG": ["VNINDEX", "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"],
-    "BAN_LE": ["VNINDEX", "MWG", "FRT", "DGW", "PET", "AST", "DHT"],
-    "BAT_DONG_SAN": [
-        "VNINDEX",
-        "VHM",
-        "VIC",
-        "BCM",
-        "VRE",
-        "NVL",
-        "KDH",
-        "SSH",
-        "KBC",
-        "NLG",
-        "TCH",
-        "NTL",
-    ],
-    "TAI_CHINH": [
-        "VNINDEX",
-        "SSI",
-        "VND",
-        "VCI",
-        "HCM",
-        "SHS",
-        "MBS",
-        "VIX",
-        "FTS",
-        "BSI",
-        "EVF",
-        "CTS",
-        "DSC",
-        "BVS",
-    ],
-    "HANG_CA_NHAN": [
-        "VNINDEX",
-        "PNJ",
-        "VGT",
-        "TCM",
-        "TLG",
-        "MSH",
-        "RAL",
-    ],
-    "THUC_PHAM": [
-        "VNINDEX",
-        "VNM",
-        "MCH",
-        "MSN",
-        "SAB",
-        "KDC",
-        "QNS",
-        "VHC",
-        "HAG",
-        "BHN",
-        "HNG",
-        "ANV",
-    ],
-    "TAI_NGUYEN": [
-        "VNINDEX",
-        "HPG",
-        "MSR",
-        "HSG",
-        "ACG",
-        "NKG",
-        "KSV",
-        "VIF",
-        "PTB",
-        "TVN",
-        "PRT",
-    ],
-    "XAY_DUNG": [
-        "VNINDEX",
-        "VGC",
-        "HUT",
-        "CTR",
-        "VCG",
-        "VCS",
-        "BMP",
-        "PC1",
-        "CTD",
-        "SCG",
-        "HHV",
-        "CII",
-    ],
-    "DIEN_NUOC_XANG": [
-        "VNINDEX",
-        "GAS",
-        "PGV",
-        "VSH",
-        "POW",
-        "BWE",
-        "HND",
-        "QTP",
-        "NT2",
-    ],
-    "DAU_KHI": [
-        "VNINDEX",
-        "BSR",
-        "PLX",
-        "PVS",
-        "PVD",
-        "OIL",
-    ],
-    "DICH_VU_CONG_NGHIEP": [
-        "VNINDEX",
-        "ACV",
-        "VEA",
-        "GMD",
-        "REE",
-        "GEX",
-        "GEE",
-        "PVT",
-        "VTP",
-    ],
-    "CONG_NGHE": [
-        "VNINDEX",
-        "FPT",
-        "CMG",
-        "SAM",
-    ],
-    "BAO_HIEM": [
-        "VNINDEX",
-        "BVH",
-        "PVI",
-        "VNR",
-        "BIC",
-        "MIG",
-        "BMI",
-        "ABI",
-    ],
-    "HOA_CHAT": [
-        "VNINDEX",
-        "GVR",
-        "DGC",
-        "DCM",
-        "DPM",
-        "PHR",
-        "AAA",
-    ],
-    "OTO_PHU_TUNG":[
-        "VNINDEX",
-        "DRC",
-        "HHS",
-        "CTF",
-        "SVC",
-        "CSM",
-        "HAX",
-    ],
-    "DU_LICH": [
-        "VNINDEX",
-        "VJC",
-        "SCS",
-        "HVN",
-    ],
-    "VIEN_THONG": [
-        "VNINDEX",
-        "VGI",
-        "FOX",
-        "VEF",
-        "VNZ"
-    ],
-    "Y_TE":[
-        "VNINDEX",
-        "DHG",
-        "IMP",
-        "DVN",
-        "DBD",
-    ],
-    "PORT_GROUP_BIG_CAP": [
-        "VNINDEX",
-        "VCB", "MWG", "VHM", "SSI", "PNJ", "VNM", "HPG", "VGC",
-        "GAS", "BSR", "ACV", "FPT", "BVH", "GVR", "DRC", "VJC",
-    ],
-    "PORT_GROUP_TOP_1": [
-        "VNINDEX",
-        "TCB", "DHT", "TCH", "BVS", "VGT", "MCH", "KSV", "VCS",
-        "POW", "BSR", "ACV", "CMG", "MIG", "DCM", "HAX", "SCS",
-        "FOX"
-    ],
-    "PORT_LONG_TERM": [
-        "VNINDEX",
-        "LPB",
-        "NTL",
-        "MWG",
-        "DCM",
-        "FPT"
-    ],
-    "PORT_QH": [
-        "VNINDEX",
-        "BSR",
-        "CTS",
-        "DCM",
-        "HAG",
-        "LPB",
-        "MBS",
-        "MWG",
-        "PLX",
-        "PVT",
-        "TCH",
-    ],
-    "PORT_MT": [
-        "VNINDEX",
-        "VNM", "MWG", "SSI", "FRT", "ANV", "NKG", "AGG", "VCB",
-        "QNS", "MBB", "HPG", "KBC", "TCB", "CII", "FUEVFVND",
-        "DRC", "IDC", "PNJ", "ABB", "MSN", "CTG", "PVD"
-    ],
-}
-
-def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="2024-01-01"):
+def get_data(symbol, origin_date, end_date, start_date="2024-01-01"):
     try:
-        if is_stock:
-            df = stock.quote.history(symbol=symbol, start=start_date, end=end_date, interval='1D')
+        is_vnstock = symbol not in MSN_ID_MAPPING or symbol == "VNINDEX"
+        if is_vnstock:
+            df = vnstock.quote.history(symbol=symbol, start=start_date, end=end_date, interval='1D')
         else:
-            if symbol == "VNINDEX":
-                df = stock.quote.history(symbol="VNINDEX", start=start_date, end=end_date)
-            else:
-                if is_crypto:
-                    if origin_date == "2024-03-01":
-                        origin_date = "2024-03-02"
-                    if origin_date == "2024-05-02":
-                        origin_date = "2024-05-01"
-                symbol_id = MY_ID_MAPPING[symbol]
-                quote = Quote(symbol_id=symbol_id)
-                df = quote.history(start=start_date, end=end_date, interval='1D')
+            symbol_id = MSN_ID_MAPPING[symbol]
+            quote = Quote(symbol_id=symbol_id)
+            df = quote.history(start=start_date, end=end_date, interval='1D')
     except Exception as e:
-        print("Error {}: {} {} {} {}".format(e, is_stock, symbol, origin_date, end_date))
+        print("Error {}: is_vnstock = {} {} {} {}".format(e, is_vnstock, symbol, origin_date, end_date))
         return None
     # convert time to format yyyy-mm-dd
     df["time"] = df["time"].dt.strftime('%Y-%m-%d')
@@ -293,8 +59,10 @@ def get_data(is_stock, is_crypto, symbol, origin_date, end_date, start_date="202
         data["close"] = data["close"].div(scale)
         return data[data["time"] >= origin_date]
     except Exception as e:
-        print("Error with df: {}".format(df))
-        print("Error {}: {} {} {} {}".format(e, is_stock, symbol, origin_date, end_date))
+        print("Error with df: \n{}".format(df))
+        print("Error {}: is_vnstock {} {} {} {}".format(e, is_vnstock, symbol, origin_date, end_date))
+        print("1\n", df["time"] == origin_date)
+        print("2\n", df[df["time"] == origin_date])
         return None
 
 
@@ -320,8 +88,6 @@ plt.style.use('dark_background')
 now = datetime.now(tz=timezone(timedelta(hours=7)))
 end_date = now.strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
-    is_stock = is_stock_group(group)
-    is_crypto = is_crypto_group(group)
     ticker_colors = get_colors(len(tickers))
     for idx, origin_date in enumerate(list_origin_dates):
         file_name = "images/{}_{}.jpg".format(group, idx)
@@ -332,7 +98,7 @@ for (group, tickers) in configs.items():
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
         is_valid = False
         for ticker_idx, ticker in enumerate(tickers):
-            data_ticker = get_data(is_stock, is_crypto, ticker, origin_date, end_date)
+            data_ticker = get_data(ticker, origin_date, end_date)
             color = ticker_colors[ticker_idx]
             if data_ticker is None:
                 continue
