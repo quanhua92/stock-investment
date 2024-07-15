@@ -1,6 +1,6 @@
 # Table of Contents
 
-- [Index](#index)
+- [LONG_TERM](#port_long_term)
 - [Ngân hàng](#ngan_hang)
 - [Bán lẻ](#ban_le)
 - [Bất động sản](#bat_dong_san)
@@ -25,15 +25,17 @@
   - [LONG_TERM](#port_long_term)
   - [QH](#port_qh)
   - [MT](#port_mt)
+- [Index](#index)
 - [Forex](#forex)
 - [Crypto](#crypto)
 - [US](#us)
 
-# INDEX
-!["INDEX_0"](images/INDEX_0.jpg)
-!["INDEX_1"](images/INDEX_1.jpg)
-!["INDEX_2"](images/INDEX_2.jpg)
-!["INDEX_3"](images/INDEX_3.jpg)
+# PORT_LONG_TERM
+"LPB", "NTL", "MWG", "DCM", "FPT", "TCM"
+!["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)
+!["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
+!["PORT_LONG_TERM_2"](images/PORT_LONG_TERM_2.jpg)
+!["PORT_LONG_TERM_3"](images/PORT_LONG_TERM_3.jpg)
 
 # NGAN_HANG
 "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"
@@ -162,13 +164,6 @@
 !["PORT_GROUP_TOP_1_2"](images/PORT_GROUP_TOP_1_2.jpg)
 !["PORT_GROUP_TOP_1_3"](images/PORT_GROUP_TOP_1_3.jpg)
 
-## PORT_LONG_TERM
-"LPB", "NTL", "MWG", "DCM", "FPT", "TCM"
-!["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)
-!["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
-!["PORT_LONG_TERM_2"](images/PORT_LONG_TERM_2.jpg)
-!["PORT_LONG_TERM_3"](images/PORT_LONG_TERM_3.jpg)
-
 ## PORT_QH
 !["PORT_QH_0"](images/PORT_QH_0.jpg)
 !["PORT_QH_1"](images/PORT_QH_1.jpg)
@@ -180,6 +175,12 @@
 !["PORT_MT_1"](images/PORT_MT_1.jpg)
 !["PORT_MT_2"](images/PORT_MT_2.jpg)
 !["PORT_MT_3"](images/PORT_MT_3.jpg)
+
+# INDEX
+!["INDEX_0"](images/INDEX_0.jpg)
+!["INDEX_1"](images/INDEX_1.jpg)
+!["INDEX_2"](images/INDEX_2.jpg)
+!["INDEX_3"](images/INDEX_3.jpg)
 
 # FOREX
 !["FOREX_0"](images/FOREX_0.jpg)
