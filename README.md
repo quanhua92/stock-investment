@@ -31,7 +31,7 @@
 - [US](#us)
 
 # PORT_LONG_TERM
-"LPB", "NTL", "MWG", "DCM", "FPT", "TCM"
+"LPB", "NTL", "MWG", "DCM", "FPT"
 !["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)
 !["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
 !["PORT_LONG_TERM_2"](images/PORT_LONG_TERM_2.jpg)

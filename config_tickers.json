@@ -6,8 +6,11 @@
     "NDX",
     "GOOG",
     "TSLA",
-    "PALL",
-    "PFE"
+    "MSFT",
+    "APPL",
+    "MSFT",
+    "NVDA",
+    "AMD"
   ],
   "INDEX": [
     "VNINDEX",
@@ -247,23 +250,24 @@
   ],
   "PORT_GROUP_TOP_1": [
     "VNINDEX",
-    "TCB",
+    "LPB",
     "DHT",
-    "TCH",
-    "BVS",
+    "NTL",
+    "MBS",
     "VGT",
-    "MCH",
-    "KSV",
-    "VCS",
+    "HNG",
+    "TVN",
+    "PC1",
     "POW",
-    "BSR",
-    "ACV",
-    "CMG",
+    "OIL",
+    "REE",
+    "FPT",
     "MIG",
     "DCM",
     "HAX",
     "SCS",
-    "FOX"
+    "FOX",
+    "IMP"
   ],
   "PORT_LONG_TERM": [
     "VNINDEX",
@@ -271,21 +275,19 @@
     "NTL",
     "MWG",
     "DCM",
-    "FPT",
-    "TCM"
+    "FPT"
   ],
   "PORT_QH": [
     "VNINDEX",
-    "BSR",
-    "CTS",
-    "DCM",
-    "HAG",
     "LPB",
-    "MBS",
+    "NTL",
     "MWG",
-    "PLX",
-    "PVT",
-    "TCH"
+    "DCM",
+    "FPT",
+    "TCM",
+    "CTS",
+    "HAG",
+    "MIG"
   ],
   "PORT_MT": [
     "VNINDEX",
