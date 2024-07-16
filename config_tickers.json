@@ -277,6 +277,16 @@
     "DCM",
     "FPT"
   ],
+  "PORT_BUY": [
+    "VNINDEX",
+    "FPT",
+    "HAX",
+    "MIG",
+    "OIL",
+    "PC1",
+    "POW",
+    "TCM"
+  ],
   "PORT_QH": [
     "VNINDEX",
     "LPB",

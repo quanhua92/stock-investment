@@ -1,6 +1,7 @@
 # Table of Contents
 
 - [LONG_TERM](#port_long_term)
+- [BUY](#port_buy)
 - [Ngân hàng](#ngan_hang)
 - [Bán lẻ](#ban_le)
 - [Bất động sản](#bat_dong_san)
@@ -23,6 +24,7 @@
   - [GROUP_BIG_CAP](#port_group_big_cap)
   - [GROUP_TOP_1](#port_group_top_1)
   - [LONG_TERM](#port_long_term)
+  - [BUY](#port_buy)
   - [QH](#port_qh)
   - [MT](#port_mt)
 - [Index](#index)
@@ -36,6 +38,13 @@
 !["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
 !["PORT_LONG_TERM_2"](images/PORT_LONG_TERM_2.jpg)
 !["PORT_LONG_TERM_3"](images/PORT_LONG_TERM_3.jpg)
+
+# PORT_BUY
+"FPT", "MIG", "HAX", "PC1", "POW", "OIL", "TCM"
+!["PORT_BUY_0"](images/PORT_BUY_0.jpg)
+!["PORT_BUY_1"](images/PORT_BUY_1.jpg)
+!["PORT_BUY_2"](images/PORT_BUY_2.jpg)
+!["PORT_BUY_3"](images/PORT_BUY_3.jpg)
 
 # NGAN_HANG
 "VCB", "BID", "CTG", "TCB", "VPB", "MBB", "ACB", "HDB", "VIB", "LPB", "STB"
