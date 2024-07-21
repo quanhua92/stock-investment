@@ -14,6 +14,8 @@ pd.options.mode.chained_assignment = None
 from vnstock3.explorer.msn.quote import *
 
 vnstock = Vnstock().stock(symbol="FRT", source="VCI")
+OUTPUT_DIR = "images"
+START_DATE = "2024-01-01"
 
 # load holiday
 df = pd.read_csv("holiday_mapping.csv", header=None, names=['from', 'to'])
@@ -30,6 +32,11 @@ for month_delta in reversed(range(4)):
     list_origin_dates.append(origin_date)
 print("list_origin_dates", list_origin_dates)
 
+# if False:
+#     OUTPUT_DIR = "images_2022"
+#     START_DATE = "2022-01-01"
+#     list_origin_dates = ["2022-04-01", "2022-11-16", "2023-08-09", "2024-03-28"]
+
 # load msn id mapping
 df = pd.read_csv("msn_id_mapping.csv", header=None, names=['ticker', 'id'])
 MSN_ID_MAPPING = {k: v for k,v in zip(df["ticker"], df["id"])}
@@ -38,7 +45,9 @@ print("MSN_ID_MAPPING keys = ", MSN_ID_MAPPING.keys())
 configs = json.load(open("config_tickers.json"))
 print("configs keys = ", configs.keys())
 
-def get_data(symbol, origin_date, end_date, start_date="2024-01-01", group=None):
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+def get_data(symbol, origin_date, end_date, start_date=START_DATE, group=None):
     try:
         is_vnstock = symbol not in MSN_ID_MAPPING or symbol == "VNINDEX"
         if is_vnstock:
@@ -99,7 +108,7 @@ end_date = now.strftime("%Y-%m-%d")
 for (group, tickers) in configs.items():
     ticker_colors = get_colors(len(tickers))
     for idx, origin_date in enumerate(list_origin_dates):
-        file_name = "images/{}_{}.jpg".format(group, idx)
+        file_name = "{}/{}_{}.jpg".format(OUTPUT_DIR, group, idx)
         if os.path.exists(file_name):
             # print("Skip {}".format(file_name))
             continue
