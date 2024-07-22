@@ -33,14 +33,12 @@
 - [US](#us)
 
 # PORT_LONG_TERM
-"LPB", "NTL", "MWG", "DCM", "FPT"
 !["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)
 !["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
 !["PORT_LONG_TERM_2"](images/PORT_LONG_TERM_2.jpg)
 !["PORT_LONG_TERM_3"](images/PORT_LONG_TERM_3.jpg)
 
 # PORT_BUY
-"FPT", "MIG", "HAX", "PC1", "POW", "OIL", "TCM"
 !["PORT_BUY_0"](images/PORT_BUY_0.jpg)
 !["PORT_BUY_1"](images/PORT_BUY_1.jpg)
 !["PORT_BUY_2"](images/PORT_BUY_2.jpg)
