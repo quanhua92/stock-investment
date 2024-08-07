@@ -1,8 +1,10 @@
 import os
+
 if "ACCEPT_TC" not in os.environ:
     os.environ["ACCEPT_TC"] = "tôi đồng ý"
 
 import json
+import argparse
 from vnstock3 import Vnstock
 from datetime import datetime, timezone, timedelta, date
 from dateutil.relativedelta import relativedelta, MO
@@ -14,12 +16,18 @@ pd.options.mode.chained_assignment = None
 from vnstock3.explorer.msn.quote import *
 
 TOP_TICKERS_FOR_AVERAGE_GROUP = 5
-AVG_GROUP_NAMES = ["NGAN_HANG", "BAN_LE", "BAT_DONG_SAN", "TAI_CHINH", "HANG_CA_NHAN", "TAI_NGUYEN", "XAY_DUNG", "DIEN_NUOC_XANG", "DAU_KHI", "DICH_VU_CONG_NGHIEP", "CONG_NGHE", "BAO_HIEM", "HOA_CHAT", "OTO_PHU_TUNG"]
+AVG_GROUP_NAMES = ["NGAN_HANG", "BAN_LE", "BAT_DONG_SAN", "TAI_CHINH", "HANG_CA_NHAN", "THUC_PHAM", "TAI_NGUYEN", "XAY_DUNG", "DIEN_NUOC_XANG", "DAU_KHI", "DICH_VU_CONG_NGHIEP", "CONG_NGHE", "BAO_HIEM", "HOA_CHAT", "OTO_PHU_TUNG"]
 AVG_TOP_GROUP = ["NGAN_HANG", "BAT_DONG_SAN", "TAI_CHINH"]
 
 vnstock = Vnstock().stock(symbol="FRT", source="VCI")
 OUTPUT_DIR = "images"
 START_DATE = "2024-01-01"
+
+
+# parse arguments
+parser = argparse.ArgumentParser()
+parser.add_argument("-m", "--mode", choices=["2022"])
+args = parser.parse_args()
 
 # load holiday
 df = pd.read_csv("holiday_mapping.csv", header=None, names=['from', 'to'])
@@ -36,10 +44,10 @@ for month_delta in reversed(range(4)):
     list_origin_dates.append(origin_date)
 print("list_origin_dates", list_origin_dates)
 
-# if False:
-#     OUTPUT_DIR = "images_2022"
-#     START_DATE = "2022-01-01"
-#     list_origin_dates = ["2022-04-01", "2022-11-16", "2023-08-09", "2024-03-28"]
+if args.mode == '2022':
+    OUTPUT_DIR = "images_2022"
+    START_DATE = "2022-01-01"
+    list_origin_dates = ["2022-04-01", "2022-11-16", "2023-08-09", "2024-03-28"]
 
 # load msn id mapping
 df = pd.read_csv("msn_id_mapping.csv", header=None, names=['ticker', 'id'])
@@ -189,4 +197,5 @@ for idx, origin_date in enumerate(list_origin_dates):
     avg_fig.savefig(avg_file_name)
     print("Saved AVG_GROUP: {}".format(avg_file_name))
     avg_top_fig.savefig(avg_top_file_name)
-    print("Saved avg_top_GROUP: {}".format(avg_top_file_name))
+    print("Saved AVG_TOP_GROUP: {}".format(avg_top_file_name))
+    plt.close()

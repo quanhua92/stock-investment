@@ -35,10 +35,10 @@
 - [US](#us)
 
 # AVG_TOP_GROUP
-!["AVG_TOP_GROUP_0"](images/AVG_TOP_GROUP_0.jpg)
-!["AVG_TOP_GROUP_1"](images/AVG_TOP_GROUP_1.jpg)
-!["AVG_TOP_GROUP_2"](images/AVG_TOP_GROUP_2.jpg)
-!["AVG_TOP_GROUP_3"](images/AVG_TOP_GROUP_3.jpg)
+!["AVG_TOP_GROUP_0"](images_2022/AVG_TOP_GROUP_0.jpg)
+!["AVG_TOP_GROUP_1"](images_2022/AVG_TOP_GROUP_1.jpg)
+!["AVG_TOP_GROUP_2"](images_2022/AVG_TOP_GROUP_2.jpg)
+!["AVG_TOP_GROUP_3"](images_2022/AVG_TOP_GROUP_3.jpg)
 
 # AVG_GROUP
 !["AVG_GROUP_0"](images_2022/AVG_GROUP_0.jpg)
