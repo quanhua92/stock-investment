@@ -13,6 +13,9 @@ pd.options.mode.chained_assignment = None
 
 from vnstock3.explorer.msn.quote import *
 
+TOP_TICKERS_FOR_AVERAGE_GROUP = 5
+AVG_GROUP_NAMES = ["NGAN_HANG", "BAN_LE", "BAT_DONG_SAN", "TAI_CHINH", "HANG_CA_NHAN", "TAI_NGUYEN", "XAY_DUNG", "DIEN_NUOC_XANG", "DAU_KHI", "DICH_VU_CONG_NGHIEP", "CONG_NGHE", "BAO_HIEM", "HOA_CHAT", "OTO_PHU_TUNG"]
+
 vnstock = Vnstock().stock(symbol="FRT", source="VCI")
 OUTPUT_DIR = "images"
 START_DATE = "2024-01-01"
@@ -105,9 +108,15 @@ plt.style.use('dark_background')
 
 now = datetime.now(tz=timezone(timedelta(hours=7)))
 end_date = now.strftime("%Y-%m-%d")
-for (group, tickers) in configs.items():
-    ticker_colors = get_colors(len(tickers))
-    for idx, origin_date in enumerate(list_origin_dates):
+for idx, origin_date in enumerate(list_origin_dates):
+    is_vnindex_in_avg = False
+    avg_file_name = "{}/AVG_GROUP_{}.jpg".format(OUTPUT_DIR, idx)
+    avg_fig, avg_ax = plt.subplots(figsize=(15, 10))
+    avg_colors = get_colors(len(configs) + 1)
+    avg_ax.set_title("AVG_GROUP_{} - {} to {}".format(idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
+
+    for group_idx, (group, tickers) in enumerate(configs.items()):
+        ticker_colors = get_colors(len(tickers) + 1)
         file_name = "{}/{}_{}.jpg".format(OUTPUT_DIR, group, idx)
         if os.path.exists(file_name):
             # print("Skip {}".format(file_name))
@@ -115,6 +124,7 @@ for (group, tickers) in configs.items():
         fig, ax = plt.subplots(figsize=(15, 10))
         ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
         is_valid = False
+        avg_ticker_list = []
         for ticker_idx, ticker in enumerate(tickers):
             data_ticker = get_data(ticker, origin_date, end_date, group=group)
             color = ticker_colors[ticker_idx]
@@ -127,9 +137,35 @@ for (group, tickers) in configs.items():
             ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
                      xycoords=('axes fraction', 'data'), textcoords='offset points', 
                      color=color, fontsize=12, weight='bold')
+            if ticker == "VNINDEX" and is_vnindex_in_avg == False:
+                is_vnindex_in_avg = True
+                avg_color = avg_colors[0]
+                data_ticker.plot(ax=avg_ax, x='time', y='close', label=label, color=avg_color)
+                avg_ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
+                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                         color=color, fontsize=12, weight='bold')
+            if ticker != "VNINDEX" and len(avg_ticker_list) < TOP_TICKERS_FOR_AVERAGE_GROUP:
+                avg_ticker_list.append(data_ticker)
+        if len(avg_ticker_list) > 0 and group in AVG_GROUP_NAMES:
+            avg_df = pd.concat(avg_ticker_list)
+            avg_df = avg_df.groupby(avg_df.index).mean()
+            avg_label = "{}_{}".format(group, idx)
+            avg_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
+            # plot to each group image
+            last_value = avg_df["close"].iloc[-1]
+            ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
+                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                         color=avg_color, fontsize=12, weight='bold')
+            avg_df.plot(ax=ax, x='time', y='close', label=avg_label, color=avg_color)
+            # plot to the actual avg fig
+            avg_df.plot(ax=avg_ax, x='time', y='close', label=avg_label, color=avg_color)
+            avg_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
+                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                         color=avg_color, fontsize=12, weight='bold')
         
         if is_valid:
-            plt.savefig(file_name)
+            fig.savefig(file_name)
             print("Saved {}".format(file_name))
-        plt.close()
-        # plt.show()
+
+    avg_fig.savefig(avg_file_name)
+    print("Saved AVG_GROUP: {}".format(avg_file_name))

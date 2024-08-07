@@ -1,5 +1,6 @@
 # Table of Contents
 
+- [AVG_GROUP](#avg_group)
 - [LONG_TERM](#port_long_term)
 - [BUY](#port_buy)
 - [Ngân hàng](#ngan_hang)
@@ -31,6 +32,12 @@
 - [Forex](#forex)
 - [Crypto](#crypto)
 - [US](#us)
+
+# AVG_GROUP
+!["AVG_GROUP_0"](images/AVG_GROUP_0.jpg)
+!["AVG_GROUP_1"](images/AVG_GROUP_1.jpg)
+!["AVG_GROUP_2"](images/AVG_GROUP_2.jpg)
+!["AVG_GROUP_3"](images/AVG_GROUP_3.jpg)
 
 # PORT_LONG_TERM
 !["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)

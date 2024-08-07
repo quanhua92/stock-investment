@@ -1,5 +1,6 @@
 # Table of Contents
 
+- [AVG_GROUP](#avg_group)
 - [LONG_TERM](#port_long_term)
 - [BUY](#port_buy)
 - [Ngân hàng](#ngan_hang)
@@ -32,15 +33,19 @@
 - [Crypto](#crypto)
 - [US](#us)
 
+# AVG_GROUP
+!["AVG_GROUP_0"](images_2022/AVG_GROUP_0.jpg)
+!["AVG_GROUP_1"](images_2022/AVG_GROUP_1.jpg)
+!["AVG_GROUP_2"](images_2022/AVG_GROUP_2.jpg)
+!["AVG_GROUP_3"](images_2022/AVG_GROUP_3.jpg)
+
 # PORT_LONG_TERM
-"LPB", "NTL", "MWG", "DCM", "FPT"
 !["PORT_LONG_TERM_0"](images_2022/PORT_LONG_TERM_0.jpg)
 !["PORT_LONG_TERM_1"](images_2022/PORT_LONG_TERM_1.jpg)
 !["PORT_LONG_TERM_2"](images_2022/PORT_LONG_TERM_2.jpg)
 !["PORT_LONG_TERM_3"](images_2022/PORT_LONG_TERM_3.jpg)
 
 # PORT_BUY
-"FPT", "MIG", "HAX", "PC1", "POW", "OIL", "TCM"
 !["PORT_BUY_0"](images_2022/PORT_BUY_0.jpg)
 !["PORT_BUY_1"](images_2022/PORT_BUY_1.jpg)
 !["PORT_BUY_2"](images_2022/PORT_BUY_2.jpg)
