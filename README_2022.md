@@ -1,3 +1,6 @@
+- [Trang chính](https://github.com/quanhua92/stock-investment/blob/main/README.md)
+- [Trang năm 2022](https://github.com/quanhua92/stock-investment/blob/main/README_2022.md)
+
 # Table of Contents
 
 - [AVG_TOP_GROUP](#avg_top_group)
