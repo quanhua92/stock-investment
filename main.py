@@ -15,6 +15,7 @@ from vnstock3.explorer.msn.quote import *
 
 TOP_TICKERS_FOR_AVERAGE_GROUP = 5
 AVG_GROUP_NAMES = ["NGAN_HANG", "BAN_LE", "BAT_DONG_SAN", "TAI_CHINH", "HANG_CA_NHAN", "TAI_NGUYEN", "XAY_DUNG", "DIEN_NUOC_XANG", "DAU_KHI", "DICH_VU_CONG_NGHIEP", "CONG_NGHE", "BAO_HIEM", "HOA_CHAT", "OTO_PHU_TUNG"]
+AVG_TOP_GROUP = ["NGAN_HANG", "BAT_DONG_SAN", "TAI_CHINH"]
 
 vnstock = Vnstock().stock(symbol="FRT", source="VCI")
 OUTPUT_DIR = "images"
@@ -110,10 +111,18 @@ now = datetime.now(tz=timezone(timedelta(hours=7)))
 end_date = now.strftime("%Y-%m-%d")
 for idx, origin_date in enumerate(list_origin_dates):
     is_vnindex_in_avg = False
+
+    # AVG_GROUP
     avg_file_name = "{}/AVG_GROUP_{}.jpg".format(OUTPUT_DIR, idx)
     avg_fig, avg_ax = plt.subplots(figsize=(15, 10))
     avg_colors = get_colors(len(configs) + 1)
     avg_ax.set_title("AVG_GROUP_{} - {} to {}".format(idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
+
+    # AVG_TOP_GROUP
+    avg_top_file_name = "{}/AVG_TOP_GROUP_{}.jpg".format(OUTPUT_DIR, idx)
+    avg_top_fig, avg_top_ax = plt.subplots(figsize=(15, 10))
+    avg_top_colors = get_colors(len(configs) + 1)
+    avg_top_ax.set_title("AVG_TOP_GROUP_{} - {} to {}".format(idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
 
     for group_idx, (group, tickers) in enumerate(configs.items()):
         ticker_colors = get_colors(len(tickers) + 1)
@@ -139,29 +148,39 @@ for idx, origin_date in enumerate(list_origin_dates):
                      color=color, fontsize=12, weight='bold')
             if ticker == "VNINDEX" and is_vnindex_in_avg == False:
                 is_vnindex_in_avg = True
+                # AVG_GROUP
                 avg_color = avg_colors[0]
                 data_ticker.plot(ax=avg_ax, x='time', y='close', label=label, color=avg_color)
                 avg_ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
                          xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                         color=color, fontsize=12, weight='bold')
+                         color=avg_color, fontsize=12, weight='bold')
+                # AVG_TOP_GROUP
+                avg_top_color = avg_top_colors[0]
+                data_ticker.plot(ax=avg_top_ax, x='time', y='close', label=label, color=avg_top_color)
+                avg_top_ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
+                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                         color=avg_top_color, fontsize=12, weight='bold')
             if ticker != "VNINDEX" and len(avg_ticker_list) < TOP_TICKERS_FOR_AVERAGE_GROUP:
                 avg_ticker_list.append(data_ticker)
-        if len(avg_ticker_list) > 0 and group in AVG_GROUP_NAMES:
+        if len(avg_ticker_list) > 0:
             avg_df = pd.concat(avg_ticker_list)
             avg_df = avg_df.groupby(avg_df.index).mean()
-            avg_label = "{}_{}".format(group, idx)
-            avg_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
-            # plot to each group image
             last_value = avg_df["close"].iloc[-1]
-            ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
-                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                         color=avg_color, fontsize=12, weight='bold')
-            avg_df.plot(ax=ax, x='time', y='close', label=avg_label, color=avg_color)
-            # plot to the actual avg fig
-            avg_df.plot(ax=avg_ax, x='time', y='close', label=avg_label, color=avg_color)
-            avg_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
-                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                         color=avg_color, fontsize=12, weight='bold')
+            avg_label = '{} {:.2f}'.format(group, last_value)
+            # AVG_GROUP
+            avg_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
+            if group in AVG_GROUP_NAMES:
+                avg_df.plot(ax=avg_ax, x='time', y='close', label=avg_label, color=avg_color)
+                avg_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
+                             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                             color=avg_color, fontsize=12, weight='bold')
+            # AVG_TOP_GROUP
+            avg_top_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
+            if group in AVG_TOP_GROUP:
+                avg_df.plot(ax=avg_top_ax, x='time', y='close', label=avg_label, color=avg_top_color)
+                avg_top_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
+                             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                             color=avg_top_color, fontsize=12, weight='bold')
         
         if is_valid:
             fig.savefig(file_name)
@@ -169,3 +188,5 @@ for idx, origin_date in enumerate(list_origin_dates):
 
     avg_fig.savefig(avg_file_name)
     print("Saved AVG_GROUP: {}".format(avg_file_name))
+    avg_top_fig.savefig(avg_top_file_name)
+    print("Saved avg_top_GROUP: {}".format(avg_top_file_name))
