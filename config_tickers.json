@@ -61,9 +61,7 @@
     "MWG",
     "FRT",
     "DGW",
-    "PET",
-    "AST",
-    "DHT"
+    "PET"
   ],
   "BAT_DONG_SAN": [
     "VNINDEX",
@@ -250,24 +248,23 @@
   ],
   "PORT_GROUP_TOP_1": [
     "VNINDEX",
-    "LPB",
+    "HDB",
     "MWG",
     "BCM",
-    "MBS",
-    "TCM",
-    "ANV",
+    "VCI",
+    "TNG",
+    "VNM",
     "KSV",
-    "PC1",
-    "VSH",
-    "PLX",
+    "SCG",
+    "GAS",
+    "OIL",
     "REE",
     "FPT",
     "BIC",
     "DCM",
-    "DRC",
-    "SCS",
-    "FOX",
-    "DVN"
+    "SVC",
+    "VJC",
+    "IMP"
   ],
   "PORT_LONG_TERM": [
     "VNINDEX",
@@ -287,7 +284,10 @@
     "PNJ",
     "REE",
     "TCM",
-    "VCB"
+    "VCB",
+    "BSR",
+    "PLX",
+    "OIL"
   ],
   "PORT_QH": [
     "VNINDEX",

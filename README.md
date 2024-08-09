@@ -95,7 +95,7 @@
 !["TAI_CHINH_2"](images/TAI_CHINH_2.jpg)
 !["TAI_CHINH_3"](images/TAI_CHINH_3.jpg)
 # HANG_CA_NHAN
-"PNJ", "VGT", "TCM", "TLG", "MSH", "RAL"
+"PNJ", "VGT", "TCM", "TLG", "MSH", "RAL", "TNG"
 !["HANG_CA_NHAN_RS"](images/HANG_CA_NHAN_RS.jpg)
 !["HANG_CA_NHAN_0"](images/HANG_CA_NHAN_0.jpg)
 !["HANG_CA_NHAN_1"](images/HANG_CA_NHAN_1.jpg)
