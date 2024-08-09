@@ -1,5 +1,6 @@
 - [Trang chính](https://github.com/quanhua92/stock-investment/blob/main/README.md)
 - [Trang năm 2022](https://github.com/quanhua92/stock-investment/blob/main/README_2022.md)
+- [Code Relative Strength cho TradingView](https://github.com/quanhua92/stock-investment/blob/main/tradingview/relative_strength.txt)
 
 # Table of Contents
 

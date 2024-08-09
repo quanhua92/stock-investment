@@ -1,0 +1,31 @@
+//@version=5
+indicator('Relative Strength', shorttitle='RS', timeframe='', precision=3)
+comparativeTickerId = input.symbol('HOSE_DLY:VNINDEX', title='Comparative Symbol')
+
+rsColor = input.color(#00ff00, title="RS Color")
+useRsPeriod = input(defval=false, title='Use Period to calculate RS (RS values are around 1.0)')
+rsPeriod = input.int(50, minval=1, title='Period')
+
+showShortMA = input(defval=true, title='Show Short MA')
+lengthShortMA = input.int(13, minval=1, title='Short MA')
+shortMAColor = input.color(#697378, title="Short MA Color")
+
+showLongMA = input(defval=true, title='Show Long MA')
+lengthLongMA = input.int(49, minval=1, title='Long MA')
+longMAColor = input.color(#cad4d9, title="Long MA Color")
+
+baseSymbol = request.security(syminfo.tickerid, timeframe.period, close)
+comparativeSymbol = request.security(comparativeTickerId, timeframe.period, close)
+
+RS_SIMPLE = baseSymbol / comparativeSymbol
+RS_PERIOD = baseSymbol / baseSymbol[rsPeriod] / (comparativeSymbol / comparativeSymbol[rsPeriod])
+
+RS = useRsPeriod ? RS_PERIOD : RS_SIMPLE
+
+plot(RS, title='RS', color=rsColor, linewidth=2)
+
+longSMA = ta.sma(RS, lengthLongMA)
+plot(showLongMA ? longSMA : na, color=longMAColor, linewidth=2)
+
+shortSMA = ta.sma(RS, lengthShortMA)
+plot(showShortMA ? shortSMA : na, color=shortMAColor, linewidth=2)
