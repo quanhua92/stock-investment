@@ -1,0 +1,13 @@
+//@version=5
+indicator('Relative Strength', shorttitle='RS', timeframe='', precision = 3)
+comparativeTickerId = input.symbol('HOSE_DLY:VNINDEX', title='Comparative Symbol')
+length = input.int(50, minval=1, title='Period')
+showMA = input(defval=true, title='Show Moving Average')
+lengthMA = input.int(14, minval=1, title='Moving Average Period')
+baseSymbol = request.security(syminfo.tickerid, timeframe.period, close)
+comparativeSymbol = request.security(comparativeTickerId, timeframe.period, close)
+hline(1, color=color.yellow, linestyle=hline.style_dotted)
+res = baseSymbol / baseSymbol[length] / (comparativeSymbol / comparativeSymbol[length])
+plot(res, title='RS', color=color.new(#11cc24, 0))
+sma_1 = ta.sma(res, lengthMA)
+plot(showMA ? sma_1 : na, color=color.new(color.gray, 0))
