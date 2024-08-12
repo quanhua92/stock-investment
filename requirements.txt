@@ -1,3 +1,4 @@
 vnstock3
 matplotlib
+mplfinance
 seaborn
