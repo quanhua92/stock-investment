@@ -95,7 +95,7 @@ RS_ORIGIN_DATE = RS_ORIGIN_DATE.strftime('%Y-%m-%d')
 if args.mode == '2022':
     OUTPUT_DIR = "images_2022"
     START_DATE = "2022-01-01"
-    list_origin_dates = ["2022-04-01", "2022-11-16", "2023-08-09", "2024-03-28"]
+    list_origin_dates = ["2023-03-23", "2023-12-04"]
     RS_START_DATE = START_DATE
     RS_ORIGIN_DATE = list_origin_dates[0]
 
@@ -161,7 +161,7 @@ def get_data(symbol, origin_date, end_date, start_date=START_DATE, rs_period=RS_
         except Exception as e:
             err = e
     print("Error with df:\n{}".format(df))
-    print("Error {}: is_vnstock {} {} {} {}".format(err, is_vnstock, symbol, origin_date, end_date))
+    print("Error {}: {} {} {}".format(err, symbol, origin_date, end_date))
     return None
 
 def get_cmap(n, name='hsv'):
@@ -185,8 +185,61 @@ now = datetime.now(tz=timezone(timedelta(hours=7)))
 end_date = now.strftime("%Y-%m-%d")
 
 plt.style.use('dark_background')
+
+# INDEX CHARTS
+if True:
+    start_date = RS_START_DATE
+
+    ticker = "VNINDEX"
+    data_ticker = get_stock_data(ticker, start_date, end_date)
+    file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
+    style = "yahoo"
+    title = "{}_CHART: {} - {}".format(ticker, start_date, end_date)
+    fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
+             figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
+             xrotation=0,
+             type="candle", style=style, 
+             scale_width_adjustment=dict(candle=2, lines=2),
+             update_width_config=dict(candle_linewidth=1.5),
+             volume=True,
+             returnfig=True
+         )
+
+    axs[0].set_title(title);
+    fig.savefig(file_name, bbox_inches='tight')
+    print("Saved {}".format(file_name))
+
+    base_data_ticker = data_ticker.copy()
+    ticker = "VN30"
+    data_ticker = get_stock_data(ticker, start_date, end_date)
+    data_ticker["rs"] = data_ticker["close"] / base_data_ticker["close"]
+
+    file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
+    style = "yahoo"
+    title = "{}_CHART: {} - {}".format(ticker, start_date, end_date)
+    apds = [
+        mpf.make_addplot(data_ticker['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
+    ]
+    fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
+             figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
+             addplot=apds,
+             xrotation=0,
+             type="candle", style=style, 
+             scale_width_adjustment=dict(candle=2, lines=2),
+             update_width_config=dict(candle_linewidth=1.5),
+             volume=True,
+             returnfig=True
+         )
+
+    axs[0].set_title(title);
+    fig.savefig(file_name, bbox_inches='tight')
+    print("Saved {}".format(file_name))
+
+    plt.style.use('dark_background')
+    
 # CALCULATE STOCK CHARTS
 if True:
+    plt.style.use('dark_background')
     start_date = RS_START_DATE
 
     # PREPARE FIGURES
@@ -459,16 +512,16 @@ if True:
                 plt.style.use('dark_background')
                 ax.legend(loc='upper left')
                 ax.grid(False)
-                fig.savefig(file_name)
+                fig.savefig(file_name, bbox_inches='tight')
                 print("Saved {}".format(file_name))
 
         plt.style.use('dark_background')
         avg_ax.legend(loc='upper left')
         avg_ax.grid(False)
-        avg_fig.savefig(avg_file_name)
+        avg_fig.savefig(avg_file_name, bbox_inches='tight')
         print("Saved AVG_GROUP: {}".format(avg_file_name))
         avg_top_ax.legend(loc='upper left')
         avg_top_ax.grid(False)
-        avg_top_fig.savefig(avg_top_file_name)
+        avg_top_fig.savefig(avg_top_file_name, bbox_inches='tight')
         print("Saved AVG_TOP_GROUP: {}".format(avg_top_file_name))
         plt.close()

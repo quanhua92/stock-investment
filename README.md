@@ -47,6 +47,10 @@
 - [Crypto](#crypto)
 - [US](#us)
 
+# VNINDEX & VN30
+!["VNINDEX_CHART"](images/VNINDEX_CHART.jpg)
+!["VN30_CHART"](images/VN30_CHART.jpg)
+
 # AVG_TOP_GROUP
 !["AVG_TOP_GROUP_RS"](images/AVG_TOP_GROUP_RS.jpg)
 !["AVG_TOP_GROUP_0"](images/AVG_TOP_GROUP_0.jpg)
