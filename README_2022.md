@@ -137,13 +137,6 @@
 !["VLXD_0"](images_2022/VLXD_0.jpg)
 !["VLXD_1"](images_2022/VLXD_1.jpg)
 
-# THUC_PHAM
-"VNM", "MCH", "MSN", "SAB", "KDC", "QNS", "VHC", "HAG", "BHN", "HNG", "ANV"
-!["THUC_PHAM_CHART"](images_2022/THUC_PHAM_CHART.jpg)
-!["THUC_PHAM_RS"](images_2022/THUC_PHAM_RS.jpg)
-!["THUC_PHAM_0"](images_2022/THUC_PHAM_0.jpg)
-!["THUC_PHAM_1"](images_2022/THUC_PHAM_1.jpg)
-
 # NANG_LUONG
 "POW", "GEG", "HDG", "NT2", "QTP", "PPC"
 !["NANG_LUONG_CHART"](images_2022/NANG_LUONG_CHART.jpg)
