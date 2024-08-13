@@ -184,9 +184,31 @@ def get_colors(n):
 now = datetime.now(tz=timezone(timedelta(hours=7)))
 end_date = now.strftime("%Y-%m-%d")
 
+plt.style.use('dark_background')
 # CALCULATE STOCK CHARTS
 if True:
     start_date = RS_START_DATE
+
+    # PREPARE FIGURES
+    # AVG_GROUP
+    avg_colors = get_colors(len(configs) + 1)
+    
+    avg_file_name = "{}/AVG_GROUP_RS.jpg".format(OUTPUT_DIR)
+    avg_fig, avg_axs = plt.subplots(2, figsize=(15, 15))
+    avg_fig.suptitle("AVG_GROUP_RS - {} to {}".format(start_date, end_date), fontsize=20, weight='bold')
+    # avg_axs[0].set_ylim([0.9, 1.2])
+    # avg_axs[1].set_ylim([0.9, 1.2])
+
+    # AVG_TOP_GROUP
+    avg_top_colors = get_colors(len(configs) + 1)
+
+    avg_top_file_name = "{}/AVG_TOP_GROUP_RS.jpg".format(OUTPUT_DIR)
+    avg_top_fig, avg_top_axs = plt.subplots(2, figsize=(15, 15))
+    avg_top_fig.suptitle("AVG_TOP_GROUP_RS - {} to {}".format(start_date, end_date), fontsize=20, weight='bold')
+    # avg_top_axs[0].set_ylim([0.9, 1.2])
+    # avg_top_axs[1].set_ylim([0.9, 1.2])
+    
+    # CALCULATE BASE_TICKER
     base_ticker = get_stock_data(RS_BASE_TICKER, start_date, end_date)
     base_ticker_raw = base_ticker.copy()
     base_ticker_start_time = base_ticker.iloc[0]["time"]
@@ -195,7 +217,30 @@ if True:
     base_ticker["high"] = base_ticker["high"].div(scale)
     base_ticker["low"] = base_ticker["low"].div(scale)
     base_ticker["close"] = base_ticker["close"].div(scale)
+    base_ticker["rs"] = 1.0
 
+    # plot base_ticker
+    label = RS_BASE_TICKER
+    last_value = 1.0
+    color = "#f5ec42"
+    base_ticker.plot(ax=avg_axs[0], x='time', y='rs', label=label, color=color)
+    avg_axs[0].annotate(label, xy=(1, last_value), xytext=(8, 0), 
+             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+             color=color, fontsize=12, weight='bold')
+    base_ticker.plot(ax=avg_axs[1], x='time', y='rs', label=label, color=color)
+    avg_axs[1].annotate(label, xy=(1, last_value), xytext=(8, 0), 
+             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+             color=color, fontsize=12, weight='bold')
+    base_ticker.plot(ax=avg_top_axs[0], x='time', y='rs', label=label, color=color)
+    avg_top_axs[0].annotate(label, xy=(1, last_value), xytext=(8, 0), 
+             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+             color=color, fontsize=12, weight='bold')
+    base_ticker.plot(ax=avg_top_axs[1], x='time', y='rs', label=label, color=color)
+    avg_top_axs[1].annotate(label, xy=(1, last_value), xytext=(8, 0), 
+             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+             color=color, fontsize=12, weight='bold')
+
+    # plot groups
     for group_idx, (group, tickers) in enumerate(configs.items()):
         ticker_colors = get_colors(len(tickers) + 1)
         file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, group)
@@ -203,11 +248,17 @@ if True:
             # print("Skip {}".format(file_name))
             continue
 
+        # RS for group tickers
+        plt.style.use('dark_background')
+        file_name_rs = "{}/{}_RS.jpg".format(OUTPUT_DIR, group)
+        fig_rs, axs_rs = plt.subplots(2, figsize=(15, 15))
+        fig_rs.suptitle("{}_RS - {} to {}".format(group, start_date, end_date), fontsize=20, weight='bold')
+        ticker_colors = get_colors(len(tickers) + 1)
+        is_valid = False
+
         avg_ticker_list = []
         for ticker_idx, ticker in enumerate(tickers):
             data_ticker = get_stock_data(ticker, start_date, end_date)
-            if ticker == "VNINDEX" or len(avg_ticker_list) >= TOP_TICKERS_FOR_AVERAGE_GROUP:
-                continue
 
             try:
                 scale = data_ticker[data_ticker["time"] == base_ticker_start_time].iloc[0]["close"] / 100
@@ -219,14 +270,45 @@ if True:
                 data_ticker["rs"] = data_ticker["close"] / base_ticker["close"]
                 if ticker != "VNINDEX" and len(avg_ticker_list) < TOP_TICKERS_FOR_AVERAGE_GROUP:
                     avg_ticker_list.append(data_ticker)
-            except IndexError:
+
+                # plot group ticker
+                if True:
+                    last_value = data_ticker["rs"].dropna().iloc[-1]
+                    label = '{} {:.2f}'.format(ticker, last_value)
+                    color = ticker_colors[ticker_idx]
+
+                    is_valid = True
+                    if last_value > 0.99:
+                        ax = axs_rs[0]
+                    else:
+                        ax = axs_rs[1]
+                    plt.style.use('dark_background')
+                    data_ticker.plot(ax=ax, x='time', y='rs', label=label, color=color)
+                    ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
+                             xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                             color=color, fontsize=12, weight='bold')
+                    if ticker == "VNINDEX":
+                        ax = axs_rs[1]
+                        data_ticker.plot(ax=ax, x='time', y='rs', label=label, color=color)
+                        ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
+                                 xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                                 color=color, fontsize=12, weight='bold')
+                        
+            except:
                 continue
+
+        if is_valid:
+            plt.style.use('dark_background')
+            axs_rs[0].grid(False)
+            axs_rs[1].grid(False)
+            axs_rs[0].legend(loc='upper left')
+            axs_rs[1].legend(loc='upper left')
+            fig_rs.savefig(file_name_rs, bbox_inches='tight')
+            print("Saved {}".format(file_name_rs))
     
-        plt.style.use('dark_background')
         if len(avg_ticker_list) > 0:
             try:
                 avg_df = pd.concat(avg_ticker_list)
-                avg_df = avg_df.set_index("time")
                 avg_df = avg_df.groupby(avg_df.index).mean()
 
                 has_volume = "volume" in avg_df and not avg_df["volume"].isnull().any().any()
@@ -235,7 +317,7 @@ if True:
                 apds = [
                     mpf.make_addplot(avg_df['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
                 ]
-                fig, axs = mpf.plot(avg_df, mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
+                fig, axs = mpf.plot(avg_df.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
                          figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
                          addplot=apds,
                          xrotation=0,
@@ -247,157 +329,57 @@ if True:
                      )
 
                 axs[0].set_title(title);
-                fig.savefig(file_name,bbox_inches='tight')
+                fig.savefig(file_name, bbox_inches='tight')
                 print("Saved {}".format(file_name))
+
+                plt.style.use('dark_background')
+                # AVG_GROUP
+                last_value = avg_df["rs"].dropna().iloc[-1]
+                avg_label = '{} {:.2f}'.format(group, last_value)
+                avg_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
+                if group in AVG_GROUP_NAMES:
+                    if last_value > 0.99:
+                        avg_ax = avg_axs[0]
+                    else:
+                        avg_ax = avg_axs[1]
+                    avg_df.plot(ax=avg_ax, x='time', y='rs', label=avg_label, color=avg_color)
+                    avg_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
+                                 xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                                 color=avg_color, fontsize=12, weight='bold')
+                # AVG_TOP_GROUP
+                avg_top_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
+                if group in AVG_TOP_GROUP:
+                    if last_value > 0.99:
+                        avg_top_ax = avg_top_axs[0]
+                    else:
+                        avg_top_ax = avg_top_axs[1]
+                    avg_df.plot(ax=avg_top_ax, x='time', y='rs', label=avg_label, color=avg_top_color)
+                    avg_top_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
+                                 xycoords=('axes fraction', 'data'), textcoords='offset points', 
+                                 color=avg_top_color, fontsize=12, weight='bold')
             except Exception as e:
                 print("Skip {} - {}".format(file_name, e))
                 print(traceback.format_exc())
 
-# CALCULATE RS CHARTS
-plt.style.use('dark_background')
-
-if False:
-    origin_date = RS_ORIGIN_DATE
-    base_ticker = get_data(symbol=RS_BASE_TICKER, origin_date=RS_ORIGIN_DATE, end_date=end_date, start_date=RS_START_DATE, rs_period=RS_PERIOD)
-    base_rs_diff = base_ticker["rs_diff"]
-    base_ticker["rs"] = base_ticker["rs_diff"] / base_rs_diff
-    last_value = base_ticker["rs"].dropna().iloc[-1]
-
-    # AVG_GROUP
-    avg_colors = get_colors(len(configs) + 1)
-    
-    avg_file_name = "{}/AVG_GROUP_RS.jpg".format(OUTPUT_DIR)
-    avg_fig, avg_axs = plt.subplots(2, figsize=(15, 15))
-    avg_fig.suptitle("AVG_GROUP_RS PERIOD={} - {} to {}".format(RS_PERIOD, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
-    avg_axs[0].set_ylim([0.9, 1.2])
-    avg_axs[1].set_ylim([0.9, 1.2])
-
-    label = RS_BASE_TICKER
-    color = "#f5ec42"
-    base_ticker.plot(ax=avg_axs[0], x='time', y='rs', label=label, color=color)
-    avg_axs[0].annotate(label, xy=(1, last_value), xytext=(8, 0), 
-             xycoords=('axes fraction', 'data'), textcoords='offset points', 
-             color=color, fontsize=12, weight='bold')
-    base_ticker.plot(ax=avg_axs[1], x='time', y='rs', label=label, color=color)
-    avg_axs[1].annotate(label, xy=(1, last_value), xytext=(8, 0), 
-             xycoords=('axes fraction', 'data'), textcoords='offset points', 
-             color=color, fontsize=12, weight='bold')
-
-    # AVG_TOP_GROUP
-    avg_top_colors = get_colors(len(configs) + 1)
-
-    avg_top_file_name = "{}/AVG_TOP_GROUP_RS.jpg".format(OUTPUT_DIR)
-    avg_top_fig, avg_top_axs = plt.subplots(2, figsize=(15, 15))
-    avg_top_fig.suptitle("AVG_TOP_GROUP_RS PERIOD={} - {} to {}".format(RS_PERIOD, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
-    avg_top_axs[0].set_ylim([0.9, 1.2])
-    avg_top_axs[1].set_ylim([0.9, 1.2])
-
-    base_ticker.plot(ax=avg_top_axs[0], x='time', y='rs', label=label, color=color)
-    avg_top_axs[0].annotate(label, xy=(1, last_value), xytext=(8, 0), 
-             xycoords=('axes fraction', 'data'), textcoords='offset points', 
-             color=color, fontsize=12, weight='bold')
-    base_ticker.plot(ax=avg_top_axs[1], x='time', y='rs', label=label, color=color)
-    avg_top_axs[1].annotate(label, xy=(1, last_value), xytext=(8, 0), 
-             xycoords=('axes fraction', 'data'), textcoords='offset points', 
-             color=color, fontsize=12, weight='bold')
-
-    for group_idx, (group, tickers) in enumerate(configs.items()):
-        ticker_colors = get_colors(len(tickers) + 1)
-        file_name = "{}/{}_RS.jpg".format(OUTPUT_DIR, group)
-        if os.path.exists(file_name):
-            print("Skip {}".format(file_name))
-            continue
-        fig, axs = plt.subplots(2, figsize=(15, 15))
-        fig.suptitle("{}_RS PERIOD={} - {} to {}".format(group, RS_PERIOD,  origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
-
-        is_valid = False
-        avg_ticker_list = []
-        for ticker_idx, ticker in enumerate(tickers):
-            try:
-                data_ticker = get_data(ticker, origin_date, end_date, start_date=RS_START_DATE, rs_period=RS_PERIOD)
-                print("data_ticker", data_ticker, ticker)
-                if data_ticker is None:
-                    continue
-                data_ticker["rs"] = data_ticker["rs_diff"] / base_rs_diff
-
-                color = ticker_colors[ticker_idx]
-                is_valid = True
-                last_value = data_ticker["rs"].dropna().iloc[-1]
-
-                if last_value > 0.99:
-                    ax = axs[0]
-                else:
-                    ax = axs[1]
-                label = '{} {:.2f}'.format(ticker, last_value)
-                data_ticker.plot(ax=ax, x='time', y='rs', label=label, color=color)
-                ax.annotate(label, xy=(1, last_value), xytext=(8, 0), 
-                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                         color=color, fontsize=12, weight='bold')
-                if ticker == "VNINDEX":
-                    data_ticker.plot(ax=axs[1], x='time', y='rs', label=label, color=color)
-                    axs[1].annotate(label, xy=(1, last_value), xytext=(8, 0), 
-                         xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                         color=color, fontsize=12, weight='bold')
-                if ticker != "VNINDEX" and len(avg_ticker_list) < TOP_TICKERS_FOR_AVERAGE_GROUP:
-                    avg_ticker_list.append(data_ticker)
-                    avg_ticker_raw_list.append(data_ticker_raw)
-            except:
-                continue
-
-        if len(avg_ticker_list) > 0:
-            avg_df = pd.concat(avg_ticker_list)
-            avg_df = avg_df.groupby(avg_df.index).mean()
-            
-            # AVG_GROUP
-            last_value = avg_df["rs"].dropna().iloc[-1]
-            avg_label = '{} {:.2f}'.format(group, last_value)
-            avg_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
-            if group in AVG_GROUP_NAMES:
-                if last_value > 0.99:
-                    avg_ax = avg_axs[0]
-                else:
-                    avg_ax = avg_axs[1]
-                avg_df.plot(ax=avg_ax, x='time', y='rs', label=avg_label, color=avg_color)
-                avg_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
-                             xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                             color=avg_color, fontsize=12, weight='bold')
-            # AVG_TOP_GROUP
-            avg_top_color = avg_colors[group_idx + 1] # 0 is for VNINDEX
-            if group in AVG_TOP_GROUP:
-                if last_value > 0.99:
-                    avg_top_ax = avg_top_axs[0]
-                else:
-                    avg_top_ax = avg_top_axs[1]
-                avg_df.plot(ax=avg_top_ax, x='time', y='rs', label=avg_label, color=avg_top_color)
-                avg_top_ax.annotate(avg_label, xy=(1, last_value), xytext=(8, 0), 
-                             xycoords=('axes fraction', 'data'), textcoords='offset points', 
-                             color=avg_top_color, fontsize=12, weight='bold')
-    
-        plt.style.use('dark_background')
-        if is_valid:
-            axs[0].legend(loc='upper left')
-            axs[1].legend(loc='upper left')
-            fig.savefig(file_name)
-            print("Saved {}".format(file_name))
-            plt.close(fig)
-        print("is_valid", is_valid)
-        raise 11
+    # save figs
     plt.style.use('dark_background')
+    avg_axs[0].grid(False)
+    avg_axs[1].grid(False)
+    avg_top_axs[0].grid(False)
+    avg_top_axs[1].grid(False)
     avg_axs[0].legend(loc='upper left')
     avg_axs[1].legend(loc='upper left')
-    avg_fig.savefig(avg_file_name)
+    avg_fig.savefig(avg_file_name, bbox_inches='tight')
     print("Saved AVG_GROUP: {}".format(avg_file_name))
     avg_top_axs[0].legend(loc='upper left')
     avg_top_axs[1].legend(loc='upper left')
-    avg_top_fig.savefig(avg_top_file_name)
+    avg_top_fig.savefig(avg_top_file_name, bbox_inches='tight')
     print("Saved AVG_TOP_GROUP: {}".format(avg_top_file_name))
     plt.close()
 
-# END RS CHARTS
-
-
 # CALCULATE SCALE CHARTS
 if True:
+    plt.style.use('dark_background')
     for idx, origin_date in enumerate(list_origin_dates):
         is_vnindex_in_avg = False
 
@@ -474,14 +456,19 @@ if True:
                                 color=avg_top_color, fontsize=12, weight='bold')
             
             if is_valid:
+                plt.style.use('dark_background')
                 ax.legend(loc='upper left')
+                ax.grid(False)
                 fig.savefig(file_name)
                 print("Saved {}".format(file_name))
 
+        plt.style.use('dark_background')
         avg_ax.legend(loc='upper left')
+        avg_ax.grid(False)
         avg_fig.savefig(avg_file_name)
         print("Saved AVG_GROUP: {}".format(avg_file_name))
         avg_top_ax.legend(loc='upper left')
+        avg_top_ax.grid(False)
         avg_top_fig.savefig(avg_top_file_name)
         print("Saved AVG_TOP_GROUP: {}".format(avg_top_file_name))
         plt.close()
