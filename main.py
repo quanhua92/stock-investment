@@ -170,7 +170,7 @@ def get_cmap(n, name='hsv'):
     return plt.get_cmap(name, n)
 
 def get_colors(n):
-    colors = ["#eef745", "#f22c2c", "#f2672c", "#f2882c", "#f2ad2c", "#adf22c", "#5df22c", "#2cf278", "#2cf2d1", "#2c9cf2", "#2c5af2", "#7f2cf2", "#bd2cf2", "#f22ce2", "#f22c75", "#a61212", "#ab6203", "#a3ab03", "#65ab03", "#03ab1c", "#03ab95", "#0357ab", "#0603ab", "#9a03ab", "#ab0365"]
+    colors = ["#eef745", "#f22c2c", "#f2672c", "#f2882c", "#f2ad2c", "#adf22c", "#5df22c", "#2cf278", "#2cf2d1", "#2c9cf2", "#2c5af2", "#7f2cf2", "#bd2cf2", "#f22ce2", "#f22c75", "#a61212", "#ab6203", "#a3ab03", "#65ab03", "#03ab1c", "#03ab95", "#0357ab", "#462cdb", "#9a03ab", "#ab0365"]
     if n <= len(colors):
         return colors[0:n]
     
@@ -182,6 +182,7 @@ def get_colors(n):
     return outputs
 
 now = datetime.now(tz=timezone(timedelta(hours=7)))
+now_str = now.strftime("%Y-%m-%d %H:%M:%S")
 end_date = now.strftime("%Y-%m-%d")
 
 plt.style.use('dark_background')
@@ -194,7 +195,7 @@ if True:
     data_ticker = get_stock_data(ticker, start_date, end_date)
     file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
     style = "yahoo"
-    title = "{}_CHART: {} - {}".format(ticker, start_date, end_date)
+    title = "{}_CHART: {} - {}".format(ticker, start_date, now_str)
     fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
              figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
              xrotation=0,
@@ -216,7 +217,7 @@ if True:
 
     file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
     style = "yahoo"
-    title = "{}_CHART: {} - {}".format(ticker, start_date, end_date)
+    title = "{}_CHART: {} - {}".format(ticker, start_date, now_str)
     apds = [
         mpf.make_addplot(data_ticker['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
     ]
@@ -248,7 +249,7 @@ if True:
     
     avg_file_name = "{}/AVG_GROUP_RS.jpg".format(OUTPUT_DIR)
     avg_fig, avg_axs = plt.subplots(2, figsize=(15, 15))
-    avg_fig.suptitle("AVG_GROUP_RS - {} to {}".format(start_date, end_date), fontsize=20, weight='bold')
+    avg_fig.suptitle("AVG_GROUP_RS - {} to {}".format(start_date, now_str), fontsize=20, weight='bold')
     # avg_axs[0].set_ylim([0.9, 1.2])
     # avg_axs[1].set_ylim([0.9, 1.2])
 
@@ -257,7 +258,7 @@ if True:
 
     avg_top_file_name = "{}/AVG_TOP_GROUP_RS.jpg".format(OUTPUT_DIR)
     avg_top_fig, avg_top_axs = plt.subplots(2, figsize=(15, 15))
-    avg_top_fig.suptitle("AVG_TOP_GROUP_RS - {} to {}".format(start_date, end_date), fontsize=20, weight='bold')
+    avg_top_fig.suptitle("AVG_TOP_GROUP_RS - {} to {}".format(start_date, now_str), fontsize=20, weight='bold')
     # avg_top_axs[0].set_ylim([0.9, 1.2])
     # avg_top_axs[1].set_ylim([0.9, 1.2])
     
@@ -305,7 +306,7 @@ if True:
         plt.style.use('dark_background')
         file_name_rs = "{}/{}_RS.jpg".format(OUTPUT_DIR, group)
         fig_rs, axs_rs = plt.subplots(2, figsize=(15, 15))
-        fig_rs.suptitle("{}_RS - {} to {}".format(group, start_date, end_date), fontsize=20, weight='bold')
+        fig_rs.suptitle("{}_RS - {} to {}".format(group, start_date, now_str), fontsize=20, weight='bold')
         ticker_colors = get_colors(len(tickers) + 1)
         is_valid = False
 
@@ -366,7 +367,7 @@ if True:
 
                 has_volume = "volume" in avg_df and not avg_df["volume"].isnull().any().any()
                 style = "yahoo"
-                title = "{}_CHART: {} - {}".format(group, start_date, end_date)
+                title = "{}_CHART: {} - {}".format(group, start_date, now_str)
                 apds = [
                     mpf.make_addplot(avg_df['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
                 ]
