@@ -236,7 +236,7 @@
 !["DET_MAY_1"](images/DET_MAY_1.jpg)
 
 # THUC_PHAM
-"SLS", "SBT", "MCH", "CLX", "MSN", "LSS", "QNS", "MCM", "SAB", "KDC"
+"VNM", SLS", "SBT", "MCH", "CLX", "MSN", "LSS", "QNS", "MCM", "SAB", "KDC"
 !["THUC_PHAM_CHART"](images/THUC_PHAM_CHART.jpg)
 !["THUC_PHAM_RS"](images/THUC_PHAM_RS.jpg)
 !["THUC_PHAM_0"](images/THUC_PHAM_0.jpg)

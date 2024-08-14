@@ -237,7 +237,7 @@
 !["DET_MAY_1"](images_2022/DET_MAY_1.jpg)
 
 # THUC_PHAM
-"SLS", "SBT", "MCH", "CLX", "MSN", "LSS", "QNS", "MCM", "SAB", "KDC"
+"VNM", SLS", "SBT", "MCH", "CLX", "MSN", "LSS", "QNS", "MCM", "SAB", "KDC"
 !["THUC_PHAM_CHART"](images_2022/THUC_PHAM_CHART.jpg)
 !["THUC_PHAM_RS"](images_2022/THUC_PHAM_RS.jpg)
 !["THUC_PHAM_0"](images_2022/THUC_PHAM_0.jpg)
