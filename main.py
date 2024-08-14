@@ -170,7 +170,7 @@ def get_cmap(n, name='hsv'):
     return plt.get_cmap(name, n)
 
 def get_colors(n):
-    colors = ["#ffe50b", "#12bfff", "#e48128", "#8e4eff", "#59f05f", "#2cecd2", "#ff3939", "#ff79a6", "#82b1ff", "#3983ff", "#ff00ae", "#1eff00", "#ff6600", "#1d9502", "#1d789f"]
+    colors = ["#eef745", "#f22c2c", "#f2672c", "#f2882c", "#f2ad2c", "#adf22c", "#5df22c", "#2cf278", "#2cf2d1", "#2c9cf2", "#2c5af2", "#7f2cf2", "#bd2cf2", "#f22ce2", "#f22c75", "#a61212", "#ab6203", "#a3ab03", "#65ab03", "#03ab1c", "#03ab95", "#0357ab", "#0603ab", "#9a03ab", "#ab0365"]
     if n <= len(colors):
         return colors[0:n]
     
@@ -354,8 +354,8 @@ if True:
             plt.style.use('dark_background')
             axs_rs[0].grid(False)
             axs_rs[1].grid(False)
-            axs_rs[0].legend(loc='upper left')
-            axs_rs[1].legend(loc='upper left')
+            axs_rs[0].legend(fontsize=10, loc='upper left')
+            axs_rs[1].legend(fontsize=10, loc='upper left')
             fig_rs.savefig(file_name_rs, bbox_inches='tight')
             print("Saved {}".format(file_name_rs))
     
@@ -420,12 +420,12 @@ if True:
     avg_axs[1].grid(False)
     avg_top_axs[0].grid(False)
     avg_top_axs[1].grid(False)
-    avg_axs[0].legend(loc='upper left')
-    avg_axs[1].legend(loc='upper left')
+    avg_axs[0].legend(fontsize=10, loc='upper left')
+    avg_axs[1].legend(fontsize=10, loc='upper left')
     avg_fig.savefig(avg_file_name, bbox_inches='tight')
     print("Saved AVG_GROUP: {}".format(avg_file_name))
-    avg_top_axs[0].legend(loc='upper left')
-    avg_top_axs[1].legend(loc='upper left')
+    avg_top_axs[0].legend(fontsize=10, loc='upper left')
+    avg_top_axs[1].legend(fontsize=10, loc='upper left')
     avg_top_fig.savefig(avg_top_file_name, bbox_inches='tight')
     print("Saved AVG_TOP_GROUP: {}".format(avg_top_file_name))
     plt.close()
@@ -510,17 +510,17 @@ if True:
             
             if is_valid:
                 plt.style.use('dark_background')
-                ax.legend(loc='upper left')
+                ax.legend(fontsize=10, loc='upper left')
                 ax.grid(False)
                 fig.savefig(file_name, bbox_inches='tight')
                 print("Saved {}".format(file_name))
 
         plt.style.use('dark_background')
-        avg_ax.legend(loc='upper left')
+        avg_ax.legend(fontsize=10, loc='upper left')
         avg_ax.grid(False)
         avg_fig.savefig(avg_file_name, bbox_inches='tight')
         print("Saved AVG_GROUP: {}".format(avg_file_name))
-        avg_top_ax.legend(loc='upper left')
+        avg_top_ax.legend(fontsize=10, loc='upper left')
         avg_top_ax.grid(False)
         avg_top_fig.savefig(avg_top_file_name, bbox_inches='tight')
         print("Saved AVG_TOP_GROUP: {}".format(avg_top_file_name))
