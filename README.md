@@ -1,5 +1,6 @@
 - [Trang chính](https://github.com/quanhua92/stock-investment/blob/main/README.md)
 - [Trang năm 2022](https://github.com/quanhua92/stock-investment/blob/main/README_2022.md)
+- [Trang chart](https://github.com/quanhua92/stock-investment/blob/main/README_CHART.md)
 - [Code Relative Strength cho TradingView](https://github.com/quanhua92/stock-investment/blob/main/tradingview/relative_strength.txt)
 
 # Table of Contents
@@ -101,12 +102,69 @@
 !["BAT_DONG_SAN_KCN_0"](images/BAT_DONG_SAN_KCN_0.jpg)
 !["BAT_DONG_SAN_KCN_1"](images/BAT_DONG_SAN_KCN_1.jpg)
 
+# THUC_PHAM
+"MCH", "VNM", "MSN", "SAB", "QNS", "KDC", "SBT", "MCM", "SLS", "CLX", "LSS"
+!["THUC_PHAM_CHART"](images/THUC_PHAM_CHART.jpg)
+!["THUC_PHAM_RS"](images/THUC_PHAM_RS.jpg)
+!["THUC_PHAM_0"](images/THUC_PHAM_0.jpg)
+!["THUC_PHAM_1"](images/THUC_PHAM_1.jpg)
+
 # BAN_LE
 "MWG", "PNJ", "FRT", "DGW", "PET", "HAX"
 !["BAN_LE_CHART"](images/BAN_LE_CHART.jpg)
 !["BAN_LE_RS"](images/BAN_LE_RS.jpg)
 !["BAN_LE_0"](images/BAN_LE_0.jpg)
 !["BAN_LE_1"](images/BAN_LE_1.jpg)
+
+# DAU_KHI
+"GAS", "BSR", "PLX", "PVS", "OIL", "PVD", "CNG", "PVC"
+!["DAU_KHI_CHART"](images/DAU_KHI_CHART.jpg)
+!["DAU_KHI_RS"](images/DAU_KHI_RS.jpg)
+!["DAU_KHI_0"](images/DAU_KHI_0.jpg)
+!["DAU_KHI_1"](images/DAU_KHI_1.jpg)
+
+# DET_MAY
+"VGT", "TCM", "MSH", "TNG", "STK", "PPH", "GIL", "ADS", "EVE"
+!["DET_MAY_CHART"](images/DET_MAY_CHART.jpg)
+!["DET_MAY_RS"](images/DET_MAY_RS.jpg)
+!["DET_MAY_0"](images/DET_MAY_0.jpg)
+!["DET_MAY_1"](images/DET_MAY_1.jpg)
+
+# NHUA
+"NTP", "BMP", "AAA", "APH", "NHH", "HCD"
+!["NHUA_CHART"](images/NHUA_CHART.jpg)
+!["NHUA_RS"](images/NHUA_RS.jpg)
+!["NHUA_0"](images/NHUA_0.jpg)
+!["NHUA_1"](images/NHUA_1.jpg)
+
+# THEP
+"HPG", "MSR", "HSG", "KSV", "TVN", "ACG", "VIF", "NKG", "PTB", "GDA", "VGS", "SMC", "TLH"
+!["THEP_CHART"](images/THEP_CHART.jpg)
+!["THEP_RS"](images/THEP_RS.jpg)
+!["THEP_0"](images/THEP_0.jpg)
+!["THEP_1"](images/THEP_1.jpg)
+
+# SUC_KHOE
+"DHG", "DVN", "IMP", "DHT", "TNH", "DCL", "JVC"
+!["SUC_KHOE_CHART"](images/SUC_KHOE_CHART.jpg)
+!["SUC_KHOE_RS"](images/SUC_KHOE_RS.jpg)
+!["SUC_KHOE_0"](images/SUC_KHOE_0.jpg)
+!["SUC_KHOE_1"](images/SUC_KHOE_1.jpg)
+
+
+# HOA_CHAT
+"DGC", "DCM", "DPM", "LAS", "DDV", "BFC", "CSV"
+!["HOA_CHAT_CHART"](images/HOA_CHAT_CHART.jpg)
+!["HOA_CHAT_RS"](images/HOA_CHAT_RS.jpg)
+!["HOA_CHAT_0"](images/HOA_CHAT_0.jpg)
+!["HOA_CHAT_1"](images/HOA_CHAT_1.jpg)
+
+# THUY_SAN
+"VHC", "MPC", "ANV", "FMC", "ASM", "IDI", "CMX", "ACL"
+!["THUY_SAN_CHART"](images/THUY_SAN_CHART.jpg)
+!["THUY_SAN_RS"](images/THUY_SAN_RS.jpg)
+!["THUY_SAN_0"](images/THUY_SAN_0.jpg)
+!["THUY_SAN_1"](images/THUY_SAN_1.jpg)
 
 # XAY_DUNG
 "HUT", "CTD", "CII", "IJC", "BCG", "DPG", "CKG", "HBC", "L18", "IDJ", "S99", "VC2", "C69", "TLD", "PHC", "C47", "BCE", "FID"
@@ -122,13 +180,6 @@
 !["DAU_TU_CONG_0"](images/DAU_TU_CONG_0.jpg)
 !["DAU_TU_CONG_1"](images/DAU_TU_CONG_1.jpg)
 
-# THEP
-"HPG", "MSR", "HSG", "KSV", "TVN", "ACG", "VIF", "NKG", "PTB", "GDA", "VGS", "SMC", "TLH"
-!["THEP_CHART"](images/THEP_CHART.jpg)
-!["THEP_RS"](images/THEP_RS.jpg)
-!["THEP_0"](images/THEP_0.jpg)
-!["THEP_1"](images/THEP_1.jpg)
-
 # VLXD
 "HT1", "PTB", "VLB", "CTI", "BCC", "BTS", "DHA", "HOM", "BTN"
 !["VLXD_CHART"](images/VLXD_CHART.jpg)
@@ -143,40 +194,12 @@
 !["NANG_LUONG_0"](images/NANG_LUONG_0.jpg)
 !["NANG_LUONG_1"](images/NANG_LUONG_1.jpg)
 
-# DAU_KHI
-"GAS", "BSR", "PLX", "PVS", "OIL", "PVD", "CNG", "PVC"
-!["DAU_KHI_CHART"](images/DAU_KHI_CHART.jpg)
-!["DAU_KHI_RS"](images/DAU_KHI_RS.jpg)
-!["DAU_KHI_0"](images/DAU_KHI_0.jpg)
-!["DAU_KHI_1"](images/DAU_KHI_1.jpg)
-
 # NONG_NGHIEP
 "HAG", "DBC", "PAN", "HNG", "VLC", "BAF", "LTG", "NAF", "TSC"
 !["NONG_NGHIEP_CHART"](images/NONG_NGHIEP_CHART.jpg)
 !["NONG_NGHIEP_RS"](images/NONG_NGHIEP_RS.jpg)
 !["NONG_NGHIEP_0"](images/NONG_NGHIEP_0.jpg)
 !["NONG_NGHIEP_1"](images/NONG_NGHIEP_1.jpg)
-
-# THUY_SAN
-"VHC", "MPC", "ANV", "FMC", "ASM", "IDI", "CMX", "ACL"
-!["THUY_SAN_CHART"](images/THUY_SAN_CHART.jpg)
-!["THUY_SAN_RS"](images/THUY_SAN_RS.jpg)
-!["THUY_SAN_0"](images/THUY_SAN_0.jpg)
-!["THUY_SAN_1"](images/THUY_SAN_1.jpg)
-
-# NHUA
-"NTP", "BMP", "AAA", "APH", "NHH", "HCD"
-!["NHUA_CHART"](images/NHUA_CHART.jpg)
-!["NHUA_RS"](images/NHUA_RS.jpg)
-!["NHUA_0"](images/NHUA_0.jpg)
-!["NHUA_1"](images/NHUA_1.jpg)
-
-# HOA_CHAT
-"DGC", "DCM", "DPM", "LAS", "DDV", "BFC", "CSV"
-!["HOA_CHAT_CHART"](images/HOA_CHAT_CHART.jpg)
-!["HOA_CHAT_RS"](images/HOA_CHAT_RS.jpg)
-!["HOA_CHAT_0"](images/HOA_CHAT_0.jpg)
-!["HOA_CHAT_1"](images/HOA_CHAT_1.jpg)
 
 # VAN_TAI
 "GMD", "PVT", "VTP", "PHP", "HAH", "DVP", "VSC", "VOS", "PVP", "TCD", "VTO", "TCL", "VIP", "SKG", "DXP", "VNA", "MHC"
@@ -199,13 +222,6 @@
 !["BAO_HIEM_0"](images/BAO_HIEM_0.jpg)
 !["BAO_HIEM_1"](images/BAO_HIEM_1.jpg)
 
-# SUC_KHOE
-"DHG", "DVN", "IMP", "DHT", "TNH", "DCL", "JVC"
-!["SUC_KHOE_CHART"](images/SUC_KHOE_CHART.jpg)
-!["SUC_KHOE_RS"](images/SUC_KHOE_RS.jpg)
-!["SUC_KHOE_0"](images/SUC_KHOE_0.jpg)
-!["SUC_KHOE_1"](images/SUC_KHOE_1.jpg)
-
 # CONG_NGHE
 "VGI", "FPT", "FOX", "CMG", "SGT", "ELC", "VTK", "TTN", "MFS"
 !["CONG_NGHE_CHART"](images/CONG_NGHE_CHART.jpg)
@@ -226,20 +242,6 @@
 !["CAO_SU_RS"](images/CAO_SU_RS.jpg)
 !["CAO_SU_0"](images/CAO_SU_0.jpg)
 !["CAO_SU_1"](images/CAO_SU_1.jpg)
-
-# DET_MAY
-"VGT", "TCM", "MSH", "TNG", "STK", "PPH", "GIL", "ADS", "EVE"
-!["DET_MAY_CHART"](images/DET_MAY_CHART.jpg)
-!["DET_MAY_RS"](images/DET_MAY_RS.jpg)
-!["DET_MAY_0"](images/DET_MAY_0.jpg)
-!["DET_MAY_1"](images/DET_MAY_1.jpg)
-
-# THUC_PHAM
-"MCH", "VNM", "MSN", "SAB", "QNS", "KDC", "SBT", "MCM", "SLS", "CLX", "LSS"
-!["THUC_PHAM_CHART"](images/THUC_PHAM_CHART.jpg)
-!["THUC_PHAM_RS"](images/THUC_PHAM_RS.jpg)
-!["THUC_PHAM_0"](images/THUC_PHAM_0.jpg)
-!["THUC_PHAM_1"](images/THUC_PHAM_1.jpg)
 
 # XAY_LAP_DIEN
 "CTR", "PC1", "TV2", "VNE", "SCI"

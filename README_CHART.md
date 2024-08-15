@@ -3,10 +3,6 @@
 
 !["VN30_CHART"](images/VN30_CHART.jpg)
 
-!["PORT_LONG_TERM_CHART"](images/PORT_LONG_TERM_CHART.jpg)
-
-!["PORT_BUY_CHART"](images/PORT_BUY_CHART.jpg)
-
 !["NGAN_HANG_CHART"](images/NGAN_HANG_CHART.jpg)
 
 !["CHUNG_KHOAN_CHART"](images/CHUNG_KHOAN_CHART.jpg)
@@ -15,35 +11,24 @@
 
 !["BAT_DONG_SAN_KCN_CHART"](images/BAT_DONG_SAN_KCN_CHART.jpg)
 
+!["THUC_PHAM_CHART"](images/THUC_PHAM_CHART.jpg)
+
 !["BAN_LE_CHART"](images/BAN_LE_CHART.jpg)
-
-!["XAY_DUNG_CHART"](images/XAY_DUNG_CHART.jpg)
-
-!["DAU_TU_CONG_CHART"](images/DAU_TU_CONG_CHART.jpg)
-
-!["THEP_CHART"](images/THEP_CHART.jpg)
-
-!["VLXD_CHART"](images/VLXD_CHART.jpg)
-
-!["NANG_LUONG_CHART"](images/NANG_LUONG_CHART.jpg)
 
 !["DAU_KHI_CHART"](images/DAU_KHI_CHART.jpg)
 
-!["NONG_NGHIEP_CHART"](images/NONG_NGHIEP_CHART.jpg)
-
-!["THUY_SAN_CHART"](images/THUY_SAN_CHART.jpg)
+!["DET_MAY_CHART"](images/DET_MAY_CHART.jpg)
 
 !["NHUA_CHART"](images/NHUA_CHART.jpg)
 
-!["HOA_CHAT_CHART"](images/HOA_CHAT_CHART.jpg)
-
-!["VAN_TAI_CHART"](images/VAN_TAI_CHART.jpg)
-
-!["HANG_KHONG_CHART"](images/HANG_KHONG_CHART.jpg)
-
-!["BAO_HIEM_CHART"](images/BAO_HIEM_CHART.jpg)
+!["THEP_CHART"](images/THEP_CHART.jpg)
 
 !["SUC_KHOE_CHART"](images/SUC_KHOE_CHART.jpg)
+
+!["HOA_CHAT_CHART"](images/HOA_CHAT_CHART.jpg)
+
+!["THUY_SAN_CHART"](images/THUY_SAN_CHART.jpg)
+
 
 !["CONG_NGHE_CHART"](images/CONG_NGHE_CHART.jpg)
 
@@ -51,9 +36,21 @@
 
 !["CAO_SU_CHART"](images/CAO_SU_CHART.jpg)
 
-!["DET_MAY_CHART"](images/DET_MAY_CHART.jpg)
+!["XAY_DUNG_CHART"](images/XAY_DUNG_CHART.jpg)
 
-!["THUC_PHAM_CHART"](images/THUC_PHAM_CHART.jpg)
+!["DAU_TU_CONG_CHART"](images/DAU_TU_CONG_CHART.jpg)
+
+!["VLXD_CHART"](images/VLXD_CHART.jpg)
+
+!["NANG_LUONG_CHART"](images/NANG_LUONG_CHART.jpg)
+
+!["NONG_NGHIEP_CHART"](images/NONG_NGHIEP_CHART.jpg)
+
+!["VAN_TAI_CHART"](images/VAN_TAI_CHART.jpg)
+
+!["HANG_KHONG_CHART"](images/HANG_KHONG_CHART.jpg)
+
+!["BAO_HIEM_CHART"](images/BAO_HIEM_CHART.jpg)
 
 !["XAY_LAP_DIEN_CHART"](images/XAY_LAP_DIEN_CHART.jpg)
 
@@ -64,6 +61,10 @@
 !["PORT_GROUP_BIG_CAP_CHART"](images/PORT_GROUP_BIG_CAP_CHART.jpg)
 
 !["PORT_GROUP_TOP_1_CHART"](images/PORT_GROUP_TOP_1_CHART.jpg)
+
+!["PORT_LONG_TERM_CHART"](images/PORT_LONG_TERM_CHART.jpg)
+
+!["PORT_BUY_CHART"](images/PORT_BUY_CHART.jpg)
 
 !["PORT_QH_CHART"](images/PORT_QH_CHART.jpg)
 
