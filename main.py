@@ -52,11 +52,13 @@ AVG_GROUP_NAMES = [
 AVG_TOP_GROUP = [
     "NGAN_HANG", 
     "BAT_DONG_SAN", 
-    "TAI_CHINH", 
-    "BAN_LE",
-    "DAU_KHI", 
+    "CHUNG_KHOAN", 
     "THUC_PHAM", 
+    "BAN_LE",
+    "DAU_KHI",
     "HOA_CHAT",
+    "DET_MAY",
+    "THUY_SAN",
     "PENNY"
 ]
 
