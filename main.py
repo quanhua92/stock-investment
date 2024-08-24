@@ -197,7 +197,7 @@ if True:
     data_ticker = get_stock_data(ticker, start_date, end_date)
     file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
     style = "yahoo"
-    title = "{}_CHART: {} - {}".format(ticker, start_date, now_str)
+    title = "{}_CHART: {} - {} - {}".format(ticker, start_date, now_str, ticker)
     fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
              figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
              xrotation=0,
@@ -213,30 +213,39 @@ if True:
     print("Saved {}".format(file_name))
 
     base_data_ticker = data_ticker.copy()
-    ticker = "VN30"
-    data_ticker = get_stock_data(ticker, start_date, end_date)
-    data_ticker["rs"] = data_ticker["close"] / base_data_ticker["close"]
 
-    file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
-    style = "yahoo"
-    title = "{}_CHART: {} - {}".format(ticker, start_date, now_str)
-    apds = [
-        mpf.make_addplot(data_ticker['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
-    ]
-    fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
-             figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
-             addplot=apds,
-             xrotation=0,
-             type="candle", style=style, 
-             scale_width_adjustment=dict(candle=2, lines=2),
-             update_width_config=dict(candle_linewidth=1.5),
-             volume=True,
-             returnfig=True
-         )
+    SPECIAL_TICKERS = ["VNINDEX", "VN30", "MWG", "CTG", "HDB", "VCB", "HCM", "TVS", "GAS"]
+    SPECIAL_TICKERS += [x for x in configs["PORT_LONG_TERM"] if x not in SPECIAL_TICKERS]
 
-    axs[0].set_title(title);
-    fig.savefig(file_name, bbox_inches='tight')
-    print("Saved {}".format(file_name))
+    fp = open("README_TICKERS.md", "w")
+
+    for ticker in SPECIAL_TICKERS:
+        data_ticker = get_stock_data(ticker, start_date, end_date)
+        data_ticker["rs"] = data_ticker["close"] / base_data_ticker["close"]
+
+        file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
+        style = "yahoo"
+        title = "{}_CHART: {} - {} - {}".format(ticker, start_date, now_str, ticker)
+        apds = [
+            mpf.make_addplot(data_ticker['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
+        ]
+        fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
+                 figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
+                 addplot=apds,
+                 xrotation=0,
+                 type="candle", style=style, 
+                 scale_width_adjustment=dict(candle=2, lines=2),
+                 update_width_config=dict(candle_linewidth=1.5),
+                 volume=True,
+                 returnfig=True
+             )
+
+        axs[0].set_title(title);
+        fig.savefig(file_name, bbox_inches='tight')
+        print("Saved {}".format(file_name))
+        line = "!['{}_CHART']({})\n".format(ticker, file_name)
+        fp.write(line)
+    fp.close()
 
     plt.style.use('dark_background')
     
@@ -308,7 +317,7 @@ if True:
         plt.style.use('dark_background')
         file_name_rs = "{}/{}_RS.jpg".format(OUTPUT_DIR, group)
         fig_rs, axs_rs = plt.subplots(2, figsize=(15, 15))
-        fig_rs.suptitle("{}_RS - {} to {}".format(group, start_date, now_str), fontsize=20, weight='bold')
+        fig_rs.suptitle("{}_RS - {} to {} - {}".format(group, start_date, now_str, group), fontsize=20, weight='bold')
         ticker_colors = get_colors(len(tickers) + 1)
         is_valid = False
 
@@ -369,7 +378,7 @@ if True:
 
                 has_volume = "volume" in avg_df and not avg_df["volume"].isnull().any().any()
                 style = "yahoo"
-                title = "{}_CHART: {} - {}".format(group, start_date, now_str)
+                title = "{}_CHART: {} - {} - {}".format(group, start_date, now_str, group)
                 apds = [
                     mpf.make_addplot(avg_df['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
                 ]
@@ -460,7 +469,7 @@ if True:
                 continue
             fig, ax = plt.subplots(figsize=(15, 10))
             
-            ax.set_title("{}_{} - {} to {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S")), fontsize=20, weight='bold')
+            ax.set_title("{}_{} - {} to {} - {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S"), group), fontsize=20, weight='bold')
             is_valid = False
             avg_ticker_list = []
             for ticker_idx, ticker in enumerate(tickers):

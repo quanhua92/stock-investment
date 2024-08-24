@@ -1,6 +1,7 @@
 - [Trang chính](https://github.com/quanhua92/stock-investment/blob/main/README.md)
 - [Trang năm 2022](https://github.com/quanhua92/stock-investment/blob/main/README_2022.md)
 - [Trang chart](https://github.com/quanhua92/stock-investment/blob/main/README_CHART.md)
+- [Trang tickers](https://github.com/quanhua92/stock-investment/blob/main/README_TICKERS.md)
 - [Code Relative Strength cho TradingView](https://www.tradingview.com/script/IHQNda50-Comparative-Relative-Strength-HongQuanTrader/)
 
 !["VNINDEX_CHART"](images/VNINDEX_CHART.jpg)
