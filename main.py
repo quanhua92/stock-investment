@@ -259,7 +259,7 @@ if True:
     avg_colors = get_colors(len(configs) + 1)
     
     avg_file_name = "{}/AVG_GROUP_RS.jpg".format(OUTPUT_DIR)
-    avg_fig, avg_axs = plt.subplots(2, figsize=(15, 15))
+    avg_fig, avg_axs = plt.subplots(2, figsize=(15, 30))
     avg_fig.suptitle("AVG_GROUP_RS - {} to {}".format(start_date, now_str), fontsize=20, weight='bold')
     # avg_axs[0].set_ylim([0.9, 1.2])
     # avg_axs[1].set_ylim([0.9, 1.2])
@@ -268,7 +268,7 @@ if True:
     avg_top_colors = get_colors(len(configs) + 1)
 
     avg_top_file_name = "{}/AVG_TOP_GROUP_RS.jpg".format(OUTPUT_DIR)
-    avg_top_fig, avg_top_axs = plt.subplots(2, figsize=(15, 15))
+    avg_top_fig, avg_top_axs = plt.subplots(2, figsize=(15, 30))
     avg_top_fig.suptitle("AVG_TOP_GROUP_RS - {} to {}".format(start_date, now_str), fontsize=20, weight='bold')
     # avg_top_axs[0].set_ylim([0.9, 1.2])
     # avg_top_axs[1].set_ylim([0.9, 1.2])
@@ -306,9 +306,24 @@ if True:
              color=color, fontsize=12, weight='bold')
 
     # plot groups
+    fp = open("README_CHART.md", "w")
+    line = "!['{}_CHART']({})\n".format("VNINDEX", "{}/VNINDEX_CHART.jpg".format(OUTPUT_DIR))
+    fp.write(line)
+    line = "!['{}_CHART']({})\n".format("VN30", "{}/VN30_CHART.jpg".format(OUTPUT_DIR))
+    fp.write(line)
+    line = "!['{}']({})\n".format("AVG_GROUP_RS", avg_file_name)
+    fp.write(line)
+    line = "!['{}']({})\n".format("AVG_TOP_GROUP_RS", avg_top_file_name)
+    fp.write(line)
+
     for group_idx, (group, tickers) in enumerate(configs.items()):
         ticker_colors = get_colors(len(tickers) + 1)
         file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, group)
+        if not "PORT" in group and group not in ["INDEX", "CRYPTO", "FOREX", "US"]:
+            line = "{}\n".format(group)
+            fp.write(line)
+            line = "!['{}_CHART']({})\n".format(group, file_name)
+            fp.write(line)
         if os.path.exists(file_name):
             # print("Skip {}".format(file_name))
             continue
