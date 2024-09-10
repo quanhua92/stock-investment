@@ -53,14 +53,23 @@ AVG_TOP_GROUP = [
     "NGAN_HANG", 
     "BAT_DONG_SAN", 
     "CHUNG_KHOAN", 
-    "THUC_PHAM", 
     "BAN_LE",
-    "DAU_KHI",
-    "HOA_CHAT",
-    "DET_MAY",
-    "THUY_SAN",
-    "PENNY"
+    "NONG_NGHIEP",
+    "THEP",
+    "THUC_PHAM", 
+    "DAU_KHI"
 ]
+SPECIAL_TICKERS = [
+    "VNINDEX", "VN30", 
+    "CTG", "HDB", "VCB", 
+    "HCM", "TVS",
+    "MWG",
+    "HAG", "DBC",
+    "VGS",
+    "VNM", "MSN",
+    "GAS", "BSR", "PVS"
+]
+
 
 # vnstock = Vnstock().stock(source="VCI")
 OUTPUT_DIR = "images"
@@ -214,7 +223,6 @@ if True:
 
     base_data_ticker = data_ticker.copy()
 
-    SPECIAL_TICKERS = ["VNINDEX", "VN30", "MWG", "CTG", "HDB", "VCB", "HCM", "TVS", "GAS"]
     SPECIAL_TICKERS += [x for x in configs["PORT_LONG_TERM"] if x not in SPECIAL_TICKERS]
 
     fp = open("README_TICKERS.md", "w")
