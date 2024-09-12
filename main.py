@@ -61,13 +61,13 @@ AVG_TOP_GROUP = [
 ]
 SPECIAL_TICKERS = [
     "VNINDEX", "VN30", 
-    "CTG", "HDB", "VCB", 
-    "HCM", "TVS",
-    "MWG",
-    "HAG", "DBC",
-    "VGS",
+    "VHM",
+    "CTG", "HDB", "VCB", "ACB", "MBB",
+    "HCM", "TVS", "SSI",
+    "FPT",
+    "MWG", "DGW",
     "VNM", "MSN",
-    "GAS", "BSR", "PVS"
+    "VGS", "HPG",
 ]
 
 
