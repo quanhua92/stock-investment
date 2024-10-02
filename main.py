@@ -62,8 +62,8 @@ AVG_TOP_GROUP = [
 SPECIAL_TICKERS = [
     "VNINDEX", "VN30", 
     "VHM",
-    "CTG", "HDB", "VCB", "ACB", "MBB",
-    "HCM", "TVS", "SSI",
+    "VCB", "TPB", "MSB", "EIB",
+    "HCM", "MBS", "ORS", "BVS", "SSI",
     "FPT",
     "MWG", "DGW",
     "VNM", "MSN",
@@ -91,6 +91,9 @@ today = date.today()
 list_origin_dates = []
 for month_delta in reversed(range(NUM_MONTHS_FOR_ORIGIN_DATES)):
     origin_date = today - relativedelta(day=1, weekday=MO(1), months=month_delta)
+    print("origin_date", origin_date, " days = ", (origin_date - today).days)
+    if abs((origin_date - today).days) < 7:
+        origin_date = today - timedelta(days=7)
     origin_date = origin_date.strftime('%Y-%m-%d')
     origin_date = HOLIDAY_MAPPING.get(origin_date, origin_date)
     list_origin_dates.append(origin_date)
