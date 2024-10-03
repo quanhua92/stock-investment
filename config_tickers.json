@@ -292,22 +292,18 @@
   ],
   "PORT_BUY": [
     "VNINDEX",
-    "VCB",
-    "GAS",
-    "GAS",
-    "FPT",
-    "MSN",
+    "HCM",
+    "MBS",
+    "ORS",
+    "BVS",
+    "TPB",
+    "EIB",
+    "MSB",
     "MWG",
-    "BCM",
-    "BCM",
-    "PNJ",
-    "REE",
-    "DCM",
-    "GEX",
-    "OIL",
-    "TCM",
-    "MSH",
-    "TNG"
+    "FPT",
+    "VNM",
+    "VHM",
+    "VCB"
   ],
   "PORT_GROUP_BIG_CAP": [
     "VNINDEX",
@@ -353,12 +349,10 @@
   ],
   "PORT_LONG_TERM": [
     "VNINDEX",
-    "HCM",
-    "CTG",
-    "MWG",
-    "FPT",
-    "VNM",
-    "VHM"
+    "MBS",
+    "ORS",
+    "TPB",
+    "MSB"
   ],
   "PORT_MT": [
     "VNINDEX",
