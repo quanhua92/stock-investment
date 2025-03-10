@@ -292,18 +292,20 @@
   ],
   "PORT_BUY": [
     "VNINDEX",
+    "KBC",
     "HCM",
-    "MBS",
-    "ORS",
-    "BVS",
-    "TPB",
-    "EIB",
-    "MSB",
+    "SSI",
+    "TCB",
+    "MBB",
+    "CTG",
+    "VIX",
+    "MSN",
     "MWG",
-    "FPT",
-    "VNM",
-    "VHM",
-    "VCB"
+    "DXG",
+    "REE",
+    "HSG",
+    "HPG",
+    "FPT"
   ],
   "PORT_GROUP_BIG_CAP": [
     "VNINDEX",
@@ -403,8 +405,11 @@
   ],
   "PORT_QH": [
     "VNINDEX",
+    "TCB",
+    "MBB",
     "CTG",
-    "HCM"
+    "HCM",
+    "KBC"
   ],
   "SUC_KHOE": [
     "VNINDEX",
