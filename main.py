@@ -73,7 +73,7 @@ SPECIAL_TICKERS = [
 
 # vnstock = Vnstock().stock(source="VCI")
 OUTPUT_DIR = "images"
-START_DATE = "2024-01-01"
+START_DATE = "2024-11-11"
 
 # parse arguments
 parser = argparse.ArgumentParser()
