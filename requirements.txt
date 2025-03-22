@@ -2,3 +2,5 @@ vnstock3
 matplotlib
 mplfinance
 seaborn
+tenacity
+IPython
