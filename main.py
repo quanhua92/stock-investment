@@ -1,4 +1,5 @@
 import os
+import time
 
 if "ACCEPT_TC" not in os.environ:
     os.environ["ACCEPT_TC"] = "tôi đồng ý"
@@ -8,7 +9,7 @@ import argparse
 import matplotlib.pyplot as plt 
 import mplfinance as mpf
 import traceback
-from vnstock3 import Vnstock
+from vnstock import Vnstock
 from datetime import datetime, timezone, timedelta, date
 from dateutil.relativedelta import relativedelta, MO
 from functools import cache
@@ -16,7 +17,7 @@ from functools import cache
 import pandas as pd
 pd.options.mode.chained_assignment = None
 
-from vnstock3.explorer.msn.quote import *
+from vnstock.explorer.msn.quote import *
 
 TOP_TICKERS_FOR_AVERAGE_GROUP = 5
 AVG_GROUP_NAMES = [
@@ -71,7 +72,7 @@ SPECIAL_TICKERS = [
 ]
 
 
-# vnstock = Vnstock().stock(source="VCI")
+# vnstock = Vnstock().stock(source="TCBS")
 OUTPUT_DIR = "images"
 START_DATE = "2024-11-11"
 
@@ -122,7 +123,7 @@ configs = json.load(open("config_tickers.json"))
 print("configs keys = ", configs.keys())
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-vnstock = Vnstock().stock(symbol="SSI", source="VCI")
+vnstock = Vnstock().stock(symbol="SSI", source="TCBS")
 
 @cache
 def get_stock_data(symbol, start_date, end_date):
@@ -131,8 +132,9 @@ def get_stock_data(symbol, start_date, end_date):
         is_vnstock = symbol not in MSN_ID_MAPPING or symbol == "VNINDEX"
         if is_vnstock:
             if vnstock is None:
-                vnstock = Vnstock().stock(source="VCI")
+                vnstock = Vnstock().stock(source="TCBS")
             df = vnstock.quote.history(symbol=symbol, start=start_date, end=end_date, interval='1D')
+            time.sleep(1)
         else:
             symbol_id = MSN_ID_MAPPING[symbol]
             quote = Quote(symbol_id=symbol_id)

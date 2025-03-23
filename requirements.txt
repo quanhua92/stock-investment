@@ -1,4 +1,4 @@
-vnstock3
+vnstock
 matplotlib
 mplfinance
 seaborn

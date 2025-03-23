@@ -1,2 +1,4 @@
 .env
+venv
+combined.txt
 .ipynb_checkpoints
