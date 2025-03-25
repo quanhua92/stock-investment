@@ -6,10 +6,11 @@
 
 # Table of Contents
 
+- [PORT_CHINH](#port_chinh)
+- [PORT_PHU](#port_phu)
+- [BUY](#port_buy)
 - [AVG_TOP_GROUP](#avg_top_group)
 - [AVG_GROUP](#avg_group)
-- [LONG_TERM](#port_long_term)
-- [BUY](#port_buy)
 - [Ngân hàng](#ngan_hang)
 - [Chứng khoán](#chung_khoan)
 - [Bất động sản](#bat_dong_san)
@@ -54,28 +55,31 @@
 !["VNINDEX_CHART"](images/VNINDEX_CHART.jpg)
 !["VN30_CHART"](images/VN30_CHART.jpg)
 
-# AVG_TOP_GROUP
+# PORT_CHINH
 
-!["AVG_TOP_GROUP_RS"](images/AVG_TOP_GROUP_RS.jpg)
-!["AVG_TOP_GROUP_0"](images/AVG_TOP_GROUP_0.jpg)
-!["AVG_TOP_GROUP_1"](images/AVG_TOP_GROUP_1.jpg)
+[README_NGANH.md](README_NGANH.md)
 
-# AVG_GROUP
+[Download PORT_CHINH_0.csv](data/PORT_CHINH_0.csv)
 
-!["AVG_GROUP_RS"](images/AVG_GROUP_RS.jpg)
-!["AVG_GROUP_0"](images/AVG_GROUP_0.jpg)
-!["AVG_GROUP_1"](images/AVG_GROUP_1.jpg)
+[Download PORT_CHINH_1.csv](data/PORT_CHINH_1.csv)
 
-# PORT_LONG_TERM
+!["PORT_CHINH_CHART"](images/PORT_CHINH_CHART.jpg)
+!["PORT_CHINH_RS"](images/PORT_CHINH_RS.jpg)
+!["PORT_CHINH_0"](images/PORT_CHINH_0.jpg)
+!["PORT_CHINH_1"](images/PORT_CHINH_1.jpg)
 
-[Download PORT_LONG_TERM_0.csv](data/PORT_LONG_TERM_0.csv)
+# PORT_PHU
 
-[Download PORT_LONG_TERM_1.csv](data/PORT_LONG_TERM_1.csv)
+[README_NGANH.md](README_NGANH.md)
 
-!["PORT_LONG_TERM_CHART"](images/PORT_LONG_TERM_CHART.jpg)
-!["PORT_LONG_TERM_RS"](images/PORT_LONG_TERM_RS.jpg)
-!["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)
-!["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
+[Download PORT_PHU_0.csv](data/PORT_PHU_0.csv)
+
+[Download PORT_PHU_1.csv](data/PORT_PHU_1.csv)
+
+!["PORT_PHU_CHART"](images/PORT_PHU_CHART.jpg)
+!["PORT_PHU_RS"](images/PORT_PHU_RS.jpg)
+!["PORT_PHU_0"](images/PORT_PHU_0.jpg)
+!["PORT_PHU_1"](images/PORT_PHU_1.jpg)
 
 # PORT_BUY
 
@@ -87,6 +91,18 @@
 !["PORT_BUY_RS"](images/PORT_BUY_RS.jpg)
 !["PORT_BUY_0"](images/PORT_BUY_0.jpg)
 !["PORT_BUY_1"](images/PORT_BUY_1.jpg)
+
+# AVG_TOP_GROUP
+
+!["AVG_TOP_GROUP_RS"](images/AVG_TOP_GROUP_RS.jpg)
+!["AVG_TOP_GROUP_0"](images/AVG_TOP_GROUP_0.jpg)
+!["AVG_TOP_GROUP_1"](images/AVG_TOP_GROUP_1.jpg)
+
+# AVG_GROUP
+
+!["AVG_GROUP_RS"](images/AVG_GROUP_RS.jpg)
+!["AVG_GROUP_0"](images/AVG_GROUP_0.jpg)
+!["AVG_GROUP_1"](images/AVG_GROUP_1.jpg)
 
 # NGAN_HANG
 "VCB", "BID", "CTG", "VPB", "MBB", "ACB", "HDB", "TCB", "LPB", "STB", "VIB", "SHB", "TPB", "EIB", "OCB", "MSB", "EVF"
@@ -470,6 +486,17 @@
 !["PORT_MT_RS"](images/PORT_MT_RS.jpg)
 !["PORT_MT_0"](images/PORT_MT_0.jpg)
 !["PORT_MT_1"](images/PORT_MT_1.jpg)
+
+# PORT_LONG_TERM
+
+[Download PORT_LONG_TERM_0.csv](data/PORT_LONG_TERM_0.csv)
+
+[Download PORT_LONG_TERM_1.csv](data/PORT_LONG_TERM_1.csv)
+
+!["PORT_LONG_TERM_CHART"](images/PORT_LONG_TERM_CHART.jpg)
+!["PORT_LONG_TERM_RS"](images/PORT_LONG_TERM_RS.jpg)
+!["PORT_LONG_TERM_0"](images/PORT_LONG_TERM_0.jpg)
+!["PORT_LONG_TERM_1"](images/PORT_LONG_TERM_1.jpg)
 
 # INDEX
 
