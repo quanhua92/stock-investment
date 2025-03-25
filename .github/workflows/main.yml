@@ -23,7 +23,9 @@ jobs:
       -   name: Setup dependencies
           run: pip install -r requirements.txt
       -   name: Remove old jpg
-          run: rm images/*.jpg
+          run: rm images/*
+      -   name: Remove old data
+          run: rm data/*
       -   name: Run export jpg
           run: python main.py
       - run: |
