@@ -2,3 +2,4 @@
 venv
 combined.txt
 .ipynb_checkpoints
+.aider*

@@ -19,6 +19,8 @@ pd.options.mode.chained_assignment = None
 
 from vnstock.explorer.msn.quote import *
 
+DEBUG = False
+
 TOP_TICKERS_FOR_AVERAGE_GROUP = 5
 AVG_GROUP_NAMES = [
     "NGAN_HANG", 
@@ -74,6 +76,7 @@ SPECIAL_TICKERS = [
 
 # vnstock = Vnstock().stock(source="TCBS")
 OUTPUT_DIR = "images"
+OUTPUT_DATA_DIR = "data"
 START_DATE = "2024-11-11"
 
 # parse arguments
@@ -123,6 +126,7 @@ configs = json.load(open("config_tickers.json"))
 print("configs keys = ", configs.keys())
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DATA_DIR, exist_ok=True)
 vnstock = Vnstock().stock(symbol="SSI", source="TCBS")
 
 @cache
@@ -134,7 +138,7 @@ def get_stock_data(symbol, start_date, end_date):
             if vnstock is None:
                 vnstock = Vnstock().stock(source="TCBS")
             df = vnstock.quote.history(symbol=symbol, start=start_date, end=end_date, interval='1D')
-            time.sleep(1)
+            time.sleep(0.5)
         else:
             symbol_id = MSN_ID_MAPPING[symbol]
             quote = Quote(symbol_id=symbol_id)
@@ -144,8 +148,8 @@ def get_stock_data(symbol, start_date, end_date):
         print("Error {}: is_vnstock = {} {} {} {}".format(e, is_vnstock, symbol, origin_date, end_date))
         return None
 
-def get_data(symbol, origin_date, end_date, start_date=START_DATE, rs_period=RS_PERIOD):
-    df = get_stock_data(symbol, start_date, end_date)
+def get_data(symbol, origin_date, end_date, start_date=START_DATE, rs_period=RS_PERIOD, should_scale=True):
+    df = get_stock_data(symbol, start_date, end_date).copy()
     if df is None:
         return df
     # convert time to format yyyy-mm-dd
@@ -161,15 +165,16 @@ def get_data(symbol, origin_date, end_date, start_date=START_DATE, rs_period=RS_
             origin_date_str = cur_date.strftime('%Y-%m-%d')
         try:
             origin_close = float(df[df["time_str"] == origin_date_str]["close"].iloc[0])
-            scale = origin_close / 100
             columns = ["time", "open", "close", "high", "low", "rs_diff"]
             if "volume" in df:
                 columns.append("volume")
             data = df[columns]
-            data["open_scaled"] = data["open"].div(scale)
-            data["high_scaled"] = data["high"].div(scale)
-            data["low_scaled"] = data["low"].div(scale)
-            data["close_scaled"] = data["close"].div(scale)
+            if should_scale:
+                scale = origin_close / 100
+                data["open_scaled"] = data["open"].div(scale)
+                data["high_scaled"] = data["high"].div(scale)
+                data["low_scaled"] = data["low"].div(scale)
+                data["close_scaled"] = data["close"].div(scale)
             if offset > 0:
                 print("Fixed symbol {} with offset = {} new_date = {}".format(symbol, offset, origin_date_str))
             dt_origin_date_str = datetime.strptime(origin_date_str, '%Y-%m-%d')
@@ -204,11 +209,11 @@ end_date = now.strftime("%Y-%m-%d")
 plt.style.use('dark_background')
 
 # INDEX CHARTS
-if True:
+if not DEBUG:
     start_date = RS_START_DATE
 
     ticker = "VNINDEX"
-    data_ticker = get_stock_data(ticker, start_date, end_date)
+    data_ticker = get_stock_data(ticker, start_date, end_date).copy()
     file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
     style = "yahoo"
     title = "{}_CHART: {} - {} - {}".format(ticker, start_date, now_str, ticker)
@@ -233,7 +238,7 @@ if True:
     fp = open("README_TICKERS.md", "w")
 
     for ticker in SPECIAL_TICKERS:
-        data_ticker = get_stock_data(ticker, start_date, end_date)
+        data_ticker = get_stock_data(ticker, start_date, end_date).copy()
         data_ticker["rs"] = data_ticker["close"] / base_data_ticker["close"]
 
         file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
@@ -263,7 +268,7 @@ if True:
     plt.style.use('dark_background')
     
 # CALCULATE STOCK CHARTS
-if True:
+if not DEBUG:
     plt.style.use('dark_background')
     start_date = RS_START_DATE
 
@@ -287,7 +292,7 @@ if True:
     # avg_top_axs[1].set_ylim([0.9, 1.2])
     
     # CALCULATE BASE_TICKER
-    base_ticker = get_stock_data(RS_BASE_TICKER, start_date, end_date)
+    base_ticker = get_stock_data(RS_BASE_TICKER, start_date, end_date).copy()
     base_ticker_raw = base_ticker.copy()
     base_ticker_start_time = base_ticker.iloc[0]["time"]
     scale = base_ticker.iloc[0]["close"] / 100
@@ -351,7 +356,7 @@ if True:
 
         avg_ticker_list = []
         for ticker_idx, ticker in enumerate(tickers):
-            data_ticker = get_stock_data(ticker, start_date, end_date)
+            data_ticker = get_stock_data(ticker, start_date, end_date).copy()
 
             try:
                 scale = data_ticker[data_ticker["time"] == base_ticker_start_time].iloc[0]["close"] / 100
@@ -492,6 +497,7 @@ if True:
         for group_idx, (group, tickers) in enumerate(configs.items()):
             ticker_colors = get_colors(len(tickers) + 1)
             file_name = "{}/{}_{}.jpg".format(OUTPUT_DIR, group, idx)
+            csv_file_name = "{}/{}_{}.csv".format(OUTPUT_DATA_DIR, group, idx)
             if os.path.exists(file_name):
                 # print("Skip {}".format(file_name))
                 continue
@@ -500,8 +506,22 @@ if True:
             ax.set_title("{}_{} - {} to {} - {}".format(group, idx, origin_date, now.strftime("%Y-%m-%d %H:%M:%S"), group), fontsize=20, weight='bold')
             is_valid = False
             avg_ticker_list = []
+            raw_ticker_list = []
             for ticker_idx, ticker in enumerate(tickers):
+                raw_data_ticker = None
+                try:
+                    raw = get_data(ticker, origin_date, end_date, should_scale=False)
+                    raw["ticker"] = ticker
+                    columns = ["ticker", "time", "open", "close", "high", "low"]
+                    if "volume" in raw:
+                        columns.append("volume")
+                    raw_data_ticker = raw[columns]
+                except:
+                    pass
+                if ticker == "SSI":
+                    print("raw_data_ticker: before ", raw_data_ticker)
                 data_ticker  = get_data(ticker, origin_date, end_date)
+                
                 color = ticker_colors[ticker_idx]
                 if data_ticker is None:
                     continue
@@ -528,6 +548,8 @@ if True:
                             color=avg_top_color, fontsize=12, weight='bold')
                 if ticker != "VNINDEX" and len(avg_ticker_list) < TOP_TICKERS_FOR_AVERAGE_GROUP:
                     avg_ticker_list.append(data_ticker)
+                if raw_data_ticker is not None:
+                    raw_ticker_list.append(raw_data_ticker)
             if len(avg_ticker_list) > 0:
                 avg_df = pd.concat(avg_ticker_list)
                 avg_df = avg_df.groupby(avg_df.index).mean()
@@ -554,6 +576,10 @@ if True:
                 ax.grid(False)
                 fig.savefig(file_name, bbox_inches='tight')
                 print("Saved {}".format(file_name))
+
+                raw_df = pd.concat(raw_ticker_list)
+                raw_df.to_csv(csv_file_name, index=False)
+                print("Saved {}".format(csv_file_name))               
 
         plt.style.use('dark_background')
         avg_ax.legend(fontsize=10, loc='upper left')
