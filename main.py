@@ -213,43 +213,14 @@ if not DEBUG:
     start_date = RS_START_DATE
 
     ticker = "VNINDEX"
-    data_ticker = get_stock_data(ticker, start_date, end_date).copy()
-    file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
-    style = "yahoo"
-    title = "{}_CHART: {} - {} - {}".format(ticker, start_date, now_str, ticker)
-    fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
-             figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
-             xrotation=0,
-             type="candle", style=style, 
-             scale_width_adjustment=dict(candle=2, lines=2),
-             update_width_config=dict(candle_linewidth=1.5),
-             volume=True,
-             returnfig=True
-         )
-
-    axs[0].set_title(title);
-    fig.savefig(file_name, bbox_inches='tight')
-    print("Saved {}".format(file_name))
-
-    base_data_ticker = data_ticker.copy()
-
-    SPECIAL_TICKERS += [x for x in configs["PORT_LONG_TERM"] if x not in SPECIAL_TICKERS]
-
-    fp = open("README_TICKERS.md", "w")
-
-    for ticker in SPECIAL_TICKERS:
-        data_ticker = get_stock_data(ticker, start_date, end_date).copy()
-        data_ticker["rs"] = data_ticker["close"] / base_data_ticker["close"]
-
+    data_ticker_raw = get_stock_data(ticker, start_date, end_date)
+    if data_ticker_raw is not None:
+        data_ticker = data_ticker_raw.copy()
         file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
         style = "yahoo"
         title = "{}_CHART: {} - {} - {}".format(ticker, start_date, now_str, ticker)
-        apds = [
-            mpf.make_addplot(data_ticker['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
-        ]
         fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
                  figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
-                 addplot=apds,
                  xrotation=0,
                  type="candle", style=style, 
                  scale_width_adjustment=dict(candle=2, lines=2),
@@ -261,11 +232,45 @@ if not DEBUG:
         axs[0].set_title(title);
         fig.savefig(file_name, bbox_inches='tight')
         print("Saved {}".format(file_name))
-        line = "!['{}_CHART']({})\n".format(ticker, file_name)
-        fp.write(line)
-    fp.close()
 
-    plt.style.use('dark_background')
+        base_data_ticker = data_ticker.copy()
+
+        SPECIAL_TICKERS += [x for x in configs["PORT_LONG_TERM"] if x not in SPECIAL_TICKERS]
+
+        fp = open("README_TICKERS.md", "w")
+
+        for ticker in SPECIAL_TICKERS:
+            data_ticker_raw = get_stock_data(ticker, start_date, end_date)
+            if data_ticker_raw is None:
+                continue
+            data_ticker = data_ticker_raw.copy()
+            data_ticker["rs"] = data_ticker["close"] / base_data_ticker["close"]
+
+            file_name = "{}/{}_CHART.jpg".format(OUTPUT_DIR, ticker)
+            style = "yahoo"
+            title = "{}_CHART: {} - {} - {}".format(ticker, start_date, now_str, ticker)
+            apds = [
+                mpf.make_addplot(data_ticker['rs'], panel=2, type='line', label="RS(VNINDEX) MA(49)", mav=49)
+            ]
+            fig, axs = mpf.plot(data_ticker.set_index("time"), mav=(10, 20, 50, 100), mavcolors=['r', 'g', 'b', 'gray'], 
+                     figsize=(30, 10), panel_ratios=(3, 1),figratio=(1,1), figscale=1.5, fontscale=2, tight_layout=False,
+                     addplot=apds,
+                     xrotation=0,
+                     type="candle", style=style, 
+                     scale_width_adjustment=dict(candle=2, lines=2),
+                     update_width_config=dict(candle_linewidth=1.5),
+                     volume=True,
+                     returnfig=True
+                 )
+
+            axs[0].set_title(title);
+            fig.savefig(file_name, bbox_inches='tight')
+            print("Saved {}".format(file_name))
+            line = "!['{}_CHART']({})\n".format(ticker, file_name)
+            fp.write(line)
+        fp.close()
+
+        plt.style.use('dark_background')
     
 # CALCULATE STOCK CHARTS
 if not DEBUG:
@@ -356,7 +361,10 @@ if not DEBUG:
 
         avg_ticker_list = []
         for ticker_idx, ticker in enumerate(tickers):
-            data_ticker = get_stock_data(ticker, start_date, end_date).copy()
+            data_ticker_raw = get_stock_data(ticker, start_date, end_date)
+            if data_ticker_raw is None:
+                continue
+            data_ticker = data_ticker_raw.copy()
 
             try:
                 scale = data_ticker[data_ticker["time"] == base_ticker_start_time].iloc[0]["close"] / 100
