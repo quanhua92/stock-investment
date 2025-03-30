@@ -73,6 +73,8 @@
 
 [Download PORT_CHINH_1.csv](data/PORT_CHINH_1.csv)
 
+[Download PORT_CHINH_WEEK.csv](data_week/PORT_CHINH_WEEK.csv)
+
 !["PORT_CHINH_CHART"](images/PORT_CHINH_CHART.jpg)
 !["PORT_CHINH_RS"](images/PORT_CHINH_RS.jpg)
 !["PORT_CHINH_0"](images/PORT_CHINH_0.jpg)
@@ -86,6 +88,8 @@
 
 [Download PORT_PHU_1.csv](data/PORT_PHU_1.csv)
 
+[Download PORT_PHU_WEEK.csv](data_week/PORT_PHU_WEEK.csv)
+
 !["PORT_PHU_CHART"](images/PORT_PHU_CHART.jpg)
 !["PORT_PHU_RS"](images/PORT_PHU_RS.jpg)
 !["PORT_PHU_0"](images/PORT_PHU_0.jpg)
@@ -96,6 +100,8 @@
 [Download PORT_BUY_0.csv](data/PORT_BUY_0.csv)
 
 [Download PORT_BUY_1.csv](data/PORT_BUY_1.csv)
+
+[Download PORT_BUY_WEEK.csv](data_week/PORT_BUY_WEEK.csv)
 
 !["PORT_BUY_CHART"](images/PORT_BUY_CHART.jpg)
 !["PORT_BUY_RS"](images/PORT_BUY_RS.jpg)
@@ -121,6 +127,8 @@
 
 [Download NGAN_HANG_1.csv](data/NGAN_HANG_1.csv)
 
+[Download NGAN_HANG_WEEK.csv](data_week/NGAN_HANG_WEEK.csv)
+
 !["NGAN_HANG_CHART"](images/NGAN_HANG_CHART.jpg)
 !["NGAN_HANG_RS"](images/NGAN_HANG_RS.jpg)
 !["NGAN_HANG_0"](images/NGAN_HANG_0.jpg)
@@ -132,6 +140,8 @@
 [Download CHUNG_KHOAN_0.csv](data/CHUNG_KHOAN_0.csv)
 
 [Download CHUNG_KHOAN_1.csv](data/CHUNG_KHOAN_1.csv)
+
+[Download CHUNG_KHOAN_WEEK.csv](data_week/CHUNG_KHOAN_WEEK.csv)
 
 !["CHUNG_KHOAN_CHART"](images/CHUNG_KHOAN_CHART.jpg)
 !["CHUNG_KHOAN_RS"](images/CHUNG_KHOAN_RS.jpg)
@@ -145,6 +155,8 @@
 
 [Download BAT_DONG_SAN_1.csv](data/BAT_DONG_SAN_1.csv)
 
+[Download BAT_DONG_SAN_WEEK.csv](data_week/BAT_DONG_SAN_WEEK.csv)
+
 !["BAT_DONG_SAN_CHART"](images/BAT_DONG_SAN_CHART.jpg)
 !["BAT_DONG_SAN_RS"](images/BAT_DONG_SAN_RS.jpg)
 !["BAT_DONG_SAN_0"](images/BAT_DONG_SAN_0.jpg)
@@ -156,6 +168,8 @@
 [Download BAT_DONG_SAN_KCN_0.csv](data/BAT_DONG_SAN_KCN_0.csv)
 
 [Download BAT_DONG_SAN_KCN_1.csv](data/BAT_DONG_SAN_KCN_1.csv)
+
+[Download BAT_DONG_SAN_KCN_WEEK.csv](data_week/BAT_DONG_SAN_KCN_WEEK.csv)
 
 !["BAT_DONG_SAN_KCN_CHART"](images/BAT_DONG_SAN_KCN_CHART.jpg)
 !["BAT_DONG_SAN_KCN_RS"](images/BAT_DONG_SAN_KCN_RS.jpg)
@@ -169,6 +183,8 @@
 
 [Download THUC_PHAM_1.csv](data/THUC_PHAM_1.csv)
 
+[Download THUC_PHAM_WEEK.csv](data_week/THUC_PHAM_WEEK.csv)
+
 !["THUC_PHAM_CHART"](images/THUC_PHAM_CHART.jpg)
 !["THUC_PHAM_RS"](images/THUC_PHAM_RS.jpg)
 !["THUC_PHAM_0"](images/THUC_PHAM_0.jpg)
@@ -180,6 +196,8 @@
 [Download BAN_LE_0.csv](data/BAN_LE_0.csv)
 
 [Download BAN_LE_1.csv](data/BAN_LE_1.csv)
+
+[Download BAN_LE_WEEK.csv](data_week/BAN_LE_WEEK.csv)
 
 !["BAN_LE_CHART"](images/BAN_LE_CHART.jpg)
 !["BAN_LE_RS"](images/BAN_LE_RS.jpg)
@@ -193,6 +211,8 @@
 
 [Download DAU_KHI_1.csv](data/DAU_KHI_1.csv)
 
+[Download DAU_KHI_WEEK.csv](data_week/DAU_KHI_WEEK.csv)
+
 !["DAU_KHI_CHART"](images/DAU_KHI_CHART.jpg)
 !["DAU_KHI_RS"](images/DAU_KHI_RS.jpg)
 !["DAU_KHI_0"](images/DAU_KHI_0.jpg)
@@ -204,6 +224,8 @@
 [Download DET_MAY_0.csv](data/DET_MAY_0.csv)
 
 [Download DET_MAY_1.csv](data/DET_MAY_1.csv)
+
+[Download DET_MAY_WEEK.csv](data_week/DET_MAY_WEEK.csv)
 
 !["DET_MAY_CHART"](images/DET_MAY_CHART.jpg)
 !["DET_MAY_RS"](images/DET_MAY_RS.jpg)
@@ -217,6 +239,8 @@
 
 [Download NHUA_1.csv](data/NHUA_1.csv)
 
+[Download NHUA_WEEK.csv](data_week/NHUA_WEEK.csv)
+
 !["NHUA_CHART"](images/NHUA_CHART.jpg)
 !["NHUA_RS"](images/NHUA_RS.jpg)
 !["NHUA_0"](images/NHUA_0.jpg)
@@ -229,6 +253,8 @@
 
 [Download THEP_1.csv](data/THEP_1.csv)
 
+[Download THEP_WEEK.csv](data_week/THEP_WEEK.csv)
+
 !["THEP_CHART"](images/THEP_CHART.jpg)
 !["THEP_RS"](images/THEP_RS.jpg)
 !["THEP_0"](images/THEP_0.jpg)
@@ -240,6 +266,8 @@
 [Download SUC_KHOE_0.csv](data/SUC_KHOE_0.csv)
 
 [Download SUC_KHOE_1.csv](data/SUC_KHOE_1.csv)
+
+[Download SUC_KHOE_WEEK.csv](data_week/SUC_KHOE_WEEK.csv)
 
 !["SUC_KHOE_CHART"](images/SUC_KHOE_CHART.jpg)
 !["SUC_KHOE_RS"](images/SUC_KHOE_RS.jpg)
@@ -254,6 +282,8 @@
 
 [Download HOA_CHAT_1.csv](data/HOA_CHAT_1.csv)
 
+[Download HOA_CHAT_WEEK.csv](data_week/HOA_CHAT_WEEK.csv)
+
 !["HOA_CHAT_CHART"](images/HOA_CHAT_CHART.jpg)
 !["HOA_CHAT_RS"](images/HOA_CHAT_RS.jpg)
 !["HOA_CHAT_0"](images/HOA_CHAT_0.jpg)
@@ -265,6 +295,8 @@
 [Download THUY_SAN_0.csv](data/THUY_SAN_0.csv)
 
 [Download THUY_SAN_1.csv](data/THUY_SAN_1.csv)
+
+[Download THUY_SAN_WEEK.csv](data_week/THUY_SAN_WEEK.csv)
 
 !["THUY_SAN_CHART"](images/THUY_SAN_CHART.jpg)
 !["THUY_SAN_RS"](images/THUY_SAN_RS.jpg)
@@ -278,6 +310,8 @@
 
 [Download XAY_DUNG_1.csv](data/XAY_DUNG_1.csv)
 
+[Download XAY_DUNG_WEEK.csv](data_week/XAY_DUNG_WEEK.csv)
+
 !["XAY_DUNG_CHART"](images/XAY_DUNG_CHART.jpg)
 !["XAY_DUNG_RS"](images/XAY_DUNG_RS.jpg)
 !["XAY_DUNG_0"](images/XAY_DUNG_0.jpg)
@@ -289,6 +323,8 @@
 [Download DAU_TU_CONG_0.csv](data/DAU_TU_CONG_0.csv)
 
 [Download DAU_TU_CONG_1.csv](data/DAU_TU_CONG_1.csv)
+
+[Download DAU_TU_CONG_WEEK.csv](data_week/DAU_TU_CONG_WEEK.csv)
 
 !["DAU_TU_CONG_CHART"](images/DAU_TU_CONG_CHART.jpg)
 !["DAU_TU_CONG_RS"](images/DAU_TU_CONG_RS.jpg)
@@ -302,6 +338,8 @@
 
 [Download VLXD_1.csv](data/VLXD_1.csv)
 
+[Download VLXD_WEEK.csv](data_week/VLXD_WEEK.csv)
+
 !["VLXD_CHART"](images/VLXD_CHART.jpg)
 !["VLXD_RS"](images/VLXD_RS.jpg)
 !["VLXD_0"](images/VLXD_0.jpg)
@@ -313,6 +351,8 @@
 [Download NANG_LUONG_0.csv](data/NANG_LUONG_0.csv)
 
 [Download NANG_LUONG_1.csv](data/NANG_LUONG_1.csv)
+
+[Download NANG_LUONG_WEEK.csv](data_week/NANG_LUONG_WEEK.csv)
 
 !["NANG_LUONG_CHART"](images/NANG_LUONG_CHART.jpg)
 !["NANG_LUONG_RS"](images/NANG_LUONG_RS.jpg)
@@ -326,6 +366,8 @@
 
 [Download NONG_NGHIEP_1.csv](data/NONG_NGHIEP_1.csv)
 
+[Download NONG_NGHIEP_WEEK.csv](data_week/NONG_NGHIEP_WEEK.csv)
+
 !["NONG_NGHIEP_CHART"](images/NONG_NGHIEP_CHART.jpg)
 !["NONG_NGHIEP_RS"](images/NONG_NGHIEP_RS.jpg)
 !["NONG_NGHIEP_0"](images/NONG_NGHIEP_0.jpg)
@@ -337,6 +379,8 @@
 [Download VAN_TAI_0.csv](data/VAN_TAI_0.csv)
 
 [Download VAN_TAI_1.csv](data/VAN_TAI_1.csv)
+
+[Download VAN_TAI_WEEK.csv](data_week/VAN_TAI_WEEK.csv)
 
 !["VAN_TAI_CHART"](images/VAN_TAI_CHART.jpg)
 !["VAN_TAI_RS"](images/VAN_TAI_RS.jpg)
@@ -350,6 +394,8 @@
 
 [Download HANG_KHONG_1.csv](data/HANG_KHONG_1.csv)
 
+[Download HANG_KHONG_WEEK.csv](data_week/HANG_KHONG_WEEK.csv)
+
 !["HANG_KHONG_CHART"](images/HANG_KHONG_CHART.jpg)
 !["HANG_KHONG_RS"](images/HANG_KHONG_RS.jpg)
 !["HANG_KHONG_0"](images/HANG_KHONG_0.jpg)
@@ -361,6 +407,8 @@
 [Download BAO_HIEM_0.csv](data/BAO_HIEM_0.csv)
 
 [Download BAO_HIEM_1.csv](data/BAO_HIEM_1.csv)
+
+[Download BAO_HIEM_WEEK.csv](data_week/BAO_HIEM_WEEK.csv)
 
 !["BAO_HIEM_CHART"](images/BAO_HIEM_CHART.jpg)
 !["BAO_HIEM_RS"](images/BAO_HIEM_RS.jpg)
@@ -374,6 +422,8 @@
 
 [Download CONG_NGHE_1.csv](data/CONG_NGHE_1.csv)
 
+[Download CONG_NGHE_WEEK.csv](data_week/CONG_NGHE_WEEK.csv)
+
 !["CONG_NGHE_CHART"](images/CONG_NGHE_CHART.jpg)
 !["CONG_NGHE_RS"](images/CONG_NGHE_RS.jpg)
 !["CONG_NGHE_0"](images/CONG_NGHE_0.jpg)
@@ -385,6 +435,9 @@
 [Download KHAI_KHOANG_0.csv](data/KHAI_KHOANG_0.csv)
 
 [Download KHAI_KHOANG_1.csv](data/KHAI_KHOANG_1.csv)
+
+[Download KHAI_KHOANG_WEEK.csv](data_week/KHAI_KHOANG_WEEK.csv)
+
 
 !["KHAI_KHOANG_CHART"](images/KHAI_KHOANG_CHART.jpg)
 !["KHAI_KHOANG_RS"](images/KHAI_KHOANG_RS.jpg)
@@ -398,6 +451,8 @@
 
 [Download CAO_SU_1.csv](data/CAO_SU_1.csv)
 
+[Download CAO_SU_WEEK.csv](data_week/CAO_SU_WEEK.csv)
+
 !["CAO_SU_CHART"](images/CAO_SU_CHART.jpg)
 !["CAO_SU_RS"](images/CAO_SU_RS.jpg)
 !["CAO_SU_0"](images/CAO_SU_0.jpg)
@@ -409,6 +464,8 @@
 [Download XAY_LAP_DIEN_0.csv](data/XAY_LAP_DIEN_0.csv)
 
 [Download XAY_LAP_DIEN_1.csv](data/XAY_LAP_DIEN_1.csv)
+
+[Download XAY_LAP_DIEN_WEEK.csv](data_week/XAY_LAP_DIEN_WEEK.csv)
 
 !["XAY_LAP_DIEN_CHART"](images/XAY_LAP_DIEN_CHART.jpg)
 !["XAY_LAP_DIEN_RS"](images/XAY_LAP_DIEN_RS.jpg)
@@ -422,6 +479,8 @@
 
 [Download OTHERS_1.csv](data/OTHERS_1.csv)
 
+[Download OTHERS_WEEK.csv](data_week/OTHERS_WEEK.csv)
+
 !["OTHERS_CHART"](images/OTHERS_CHART.jpg)
 !["OTHERS_RS"](images/OTHERS_RS.jpg)
 !["OTHERS_0"](images/OTHERS_0.jpg)
@@ -433,6 +492,8 @@
 [Download PENNY_0.csv](data/PENNY_0.csv)
 
 [Download PENNY_1.csv](data/PENNY_1.csv)
+
+[Download PENNY_WEEK.csv](data_week/PENNY_WEEK.csv)
 
 !["PENNY_CHART"](images/PENNY_CHART.jpg)
 !["PENNY_RS"](images/PENNY_RS.jpg)
@@ -448,6 +509,8 @@
 
 [Download PORT_GROUP_BIG_CAP_1.csv](data/PORT_GROUP_BIG_CAP_1.csv)
 
+[Download PORT_GROUP_BIG_CAP_WEEK.csv](data_week/PORT_GROUP_BIG_CAP_WEEK.csv)
+
 !["PORT_GROUP_BIG_CAP_CHART"](images/PORT_GROUP_BIG_CAP_CHART.jpg)
 !["PORT_GROUP_BIG_CAP_RS"](images/PORT_GROUP_BIG_CAP_RS.jpg)
 !["PORT_GROUP_BIG_CAP_0"](images/PORT_GROUP_BIG_CAP_0.jpg)
@@ -458,6 +521,8 @@
 [Download PORT_GROUP_TOP_1_0.csv](data/PORT_GROUP_TOP_1_0.csv)
 
 [Download PORT_GROUP_TOP_1_1.csv](data/PORT_GROUP_TOP_1_1.csv)
+
+[Download PORT_GROUP_TOP_1_WEEK.csv](data_week/PORT_GROUP_TOP_1_WEEK.csv)
 
 !["PORT_GROUP_TOP_1_CHART"](images/PORT_GROUP_TOP_1_CHART.jpg)
 !["PORT_GROUP_TOP_1_RS"](images/PORT_GROUP_TOP_1_RS.jpg)
@@ -470,6 +535,8 @@
 
 [Download PORT_QH_1.csv](data/PORT_QH_1.csv)
 
+[Download PORT_QH_WEEK.csv](data_week/PORT_QH_WEEK.csv)
+
 !["PORT_QH_CHART"](images/PORT_QH_CHART.jpg)
 !["PORT_QH_RS"](images/PORT_QH_RS.jpg)
 !["PORT_QH_0"](images/PORT_QH_0.jpg)
@@ -480,6 +547,8 @@
 [Download PORT_NN_0.csv](data/PORT_NN_0.csv)
 
 [Download PORT_NN_1.csv](data/PORT_NN_1.csv)
+
+[Download PORT_NN_WEEK.csv](data_week/PORT_NN_WEEK.csv)
 
 !["PORT_NN_CHART"](images/PORT_NN_CHART.jpg)
 !["PORT_NN_RS"](images/PORT_NN_RS.jpg)
@@ -492,6 +561,8 @@
 
 [Download PORT_MT_1.csv](data/PORT_MT_1.csv)
 
+[Download PORT_MT_WEEK.csv](data_week/PORT_MT_WEEK.csv)
+
 !["PORT_MT_CHART"](images/PORT_MT_CHART.jpg)
 !["PORT_MT_RS"](images/PORT_MT_RS.jpg)
 !["PORT_MT_0"](images/PORT_MT_0.jpg)
@@ -502,6 +573,8 @@
 [Download PORT_LONG_TERM_0.csv](data/PORT_LONG_TERM_0.csv)
 
 [Download PORT_LONG_TERM_1.csv](data/PORT_LONG_TERM_1.csv)
+
+[Download PORT_LONG_TERM_WEEK.csv](data_week/PORT_LONG_TERM_WEEK.csv)
 
 !["PORT_LONG_TERM_CHART"](images/PORT_LONG_TERM_CHART.jpg)
 !["PORT_LONG_TERM_RS"](images/PORT_LONG_TERM_RS.jpg)

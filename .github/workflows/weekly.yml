@@ -1,0 +1,31 @@
+name: "Download week data"
+
+on:
+  workflow_dispatch:
+  schedule:
+    -   cron: "0 0 * * 0"
+
+jobs:
+  export-jpegs:
+    runs-on: ubuntu-latest
+    name: Export JPEGs
+    timeout-minutes: 60
+    steps:
+      -   uses: actions/checkout@v4
+          with:
+            token: ${{ secrets.GH_TOKEN }}
+            fetch-depth: 0
+      -   name: Set up Python 3.12
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.12
+      -   name: Setup dependencies
+          run: pip install -r requirements.txt
+      -   name: Run export jpg
+          run: python week.py
+      - run: |
+          git config user.name "$(git log -n 1 --pretty=format:%an)"
+          git config user.email "$(git log -n 1 --pretty=format:%ae)"
+          git add .
+          git commit --amend --no-edit
+          git push --force-with-lease
