@@ -4,3 +4,6 @@ mplfinance
 seaborn
 tenacity
 IPython
+requests
+beautifulsoup4
+pillow
