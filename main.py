@@ -129,27 +129,35 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DATA_DIR, exist_ok=True)
 vnstock = Vnstock().stock(symbol="SSI", source="TCBS")
 
+def get_stock_data(symbol, start_date, end_date, interval='1D'):
+    try:
+        df_raw = get_raw_stock_data(symbol, start_date, end_date, interval)
+        if df_raw is not None:
+            return df_raw.copy()
+    except Exception as e:
+        return None
+
 @cache
-def get_stock_data(symbol, start_date, end_date):
+def get_raw_stock_data(symbol, start_date, end_date, interval='1D'):
     global vnstock
     try:
         is_vnstock = symbol not in MSN_ID_MAPPING or symbol == "VNINDEX"
         if is_vnstock:
             if vnstock is None:
                 vnstock = Vnstock().stock(source="TCBS")
-            df = vnstock.quote.history(symbol=symbol, start=start_date, end=end_date, interval='1D')
+            df = vnstock.quote.history(symbol=symbol, start=start_date, end=end_date, interval=interval)
             time.sleep(0.5)
         else:
             symbol_id = MSN_ID_MAPPING[symbol]
             quote = Quote(symbol_id=symbol_id)
-            df = quote.history(start=start_date, end=end_date, interval='1D')
+            df = quote.history(start=start_date, end=end_date, interval=interval)
         return df
     except Exception as e:
         print("Error {}: is_vnstock = {} {} {} {}".format(e, is_vnstock, symbol, origin_date, end_date))
         return None
 
 def get_data(symbol, origin_date, end_date, start_date=START_DATE, rs_period=RS_PERIOD, should_scale=True):
-    df = get_stock_data(symbol, start_date, end_date).copy()
+    df = get_stock_data(symbol, start_date, end_date)
     if df is None:
         return df
     # convert time to format yyyy-mm-dd
@@ -297,7 +305,7 @@ if not DEBUG:
     # avg_top_axs[1].set_ylim([0.9, 1.2])
     
     # CALCULATE BASE_TICKER
-    base_ticker = get_stock_data(RS_BASE_TICKER, start_date, end_date).copy()
+    base_ticker = get_stock_data(RS_BASE_TICKER, start_date, end_date)
     base_ticker_raw = base_ticker.copy()
     base_ticker_start_time = base_ticker.iloc[0]["time"]
     scale = base_ticker.iloc[0]["close"] / 100
