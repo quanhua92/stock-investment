@@ -63,6 +63,7 @@ def get_raw_stock_data(symbol, start_date, end_date, interval='1D'):
             symbol_id = MSN_ID_MAPPING[symbol]
             quote = Quote(symbol_id=symbol_id)
             df = quote.history(start=start_date, end=end_date, interval=interval)
+            time.sleep(2.0)
         return df
     except Exception as e:
         print("Error {}: is_vnstock = {} {} {} {}".format(e, is_vnstock, symbol, origin_date, end_date))
