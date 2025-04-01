@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 from urllib.parse import urljoin
 
-def download_kakata_image(url, folder_path, output_prefix_filename="broker"):
+def download_kakata_image(url, folder_path, output_prefix_filename):
     """
     Download the first image inside the div with ID 'content' from a given URL,
     save it as the latest image in a specified folder, and maintain a rolling history of 7 days.
@@ -13,7 +13,7 @@ def download_kakata_image(url, folder_path, output_prefix_filename="broker"):
     Parameters:
         url (str): The URL of the webpage.
         folder_path (str): The path to the folder where images will be saved.
-        output_prefix_filename (str): The prefix for the latest image file (default is 'broker').
+        output_prefix_filename (str): The prefix for the latest image file.
 
     Returns:
         None
@@ -27,13 +27,18 @@ def download_kakata_image(url, folder_path, output_prefix_filename="broker"):
         latest_file_path = os.path.join(folder_path, f"{output_prefix_filename}.jpg")
 
         # Rolling rename for the last 7 days
+        print("Checking ", latest_file_path, " exists = ", os.path.exists(latest_file_path))
         for i in range(6, 0, -1):
             old_file = os.path.join(folder_path, f"{output_prefix_filename}_{i}.jpg")
             new_file = os.path.join(folder_path, f"{output_prefix_filename}_{i + 1}.jpg")
+            print(f"Checking {old_file} with {new_file}");
             if os.path.exists(old_file):
+                print(f"Rename {old_file} to {new_file}")
                 os.rename(old_file, new_file)
         if os.path.exists(latest_file_path):
-            os.rename(latest_file_path, os.path.join(folder_path, f"{output_prefix_filename}_1.jpg"))
+            target_path = os.path.join(folder_path, f"{output_prefix_filename}_1.jpg")
+            print(f"Rename {latest_file_path} to {target_path}")
+            os.rename(latest_file_path, target_path)
         if os.path.exists(os.path.join(folder_path, f"{output_prefix_filename}_7.jpg")):
             os.remove(os.path.join(folder_path, f"{output_prefix_filename}_7.jpg"))
 
@@ -79,5 +84,5 @@ if __name__ == "__main__":
     test_folder = "external"  # Replace with your desired folder path
 
     # Call the function for testing
-    download_kakata_image(test_url, test_folder, output_prefix_filename="broker")
+    download_kakata_image(test_url, test_folder, output_prefix_filename="kakata")
 

@@ -53,13 +53,13 @@
 
 # Dòng tiền
 
-!["Broker from Kakata"](external/broker.jpg)
-!["Broker from Kakata"](external/broker_1.jpg)
-!["Broker from Kakata"](external/broker_2.jpg)
-!["Broker from Kakata"](external/broker_3.jpg)
-!["Broker from Kakata"](external/broker_4.jpg)
-!["Broker from Kakata"](external/broker_5.jpg)
-!["Broker from Kakata"](external/broker_6.jpg)
+!["Image from Kakata"](external/kakata.jpg)
+!["Image from Kakata"](external/kakata_1.jpg)
+!["Image from Kakata"](external/kakata_2.jpg)
+!["Image from Kakata"](external/kakata_3.jpg)
+!["Image from Kakata"](external/kakata_4.jpg)
+!["Image from Kakata"](external/kakata_5.jpg)
+!["Image from Kakata"](external/kakata_6.jpg)
 
 # VNINDEX & VN30
 !["VNINDEX_CHART"](images/VNINDEX_CHART.jpg)

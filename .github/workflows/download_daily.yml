@@ -15,16 +15,6 @@ jobs:
           with:
             token: ${{ secrets.GH_TOKEN }}
             fetch-depth: 0
-      -   name: Remove old data
-          run: |
-            if [ -d external ] && [ "$(ls -A external)" ]; then
-                rm external/*
-                echo "Files removed from 'external'."
-            elif [ -d external ]; then
-                echo "Directory 'external' is empty. Nothing to remove."
-            else
-                echo "Directory 'external' does not exist. Skipping removal."
-            fi
       -   name: Set up Python 3.12
           uses: actions/setup-python@v2
           with:
