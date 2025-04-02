@@ -297,7 +297,6 @@
     "VND",
     "VIX",
     "SSI",
-    "PHR",
     "MSN",
     "KBC",
     "MWG",
@@ -414,12 +413,14 @@
   ],
   "PORT_NN": [
     "VNINDEX",
+    "ACB",
+    "CTG",
+    "VCG",
     "VIC",
     "VNM",
     "VPB",
     "MBB",
     "MWG",
-    "ACB",
     "TCB",
     "VEA",
     "SSI",
@@ -449,8 +450,7 @@
     "VIX",
     "VND",
     "TCB",
-    "CTG",
-    "PHR"
+    "CTG"
   ],
   "SUC_KHOE": [
     "VNINDEX",
