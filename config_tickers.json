@@ -291,21 +291,23 @@
   ],
   "PORT_BUY": [
     "VNINDEX",
-    "TCB",
     "MBB",
+    "LPB",
+    "VCB",
+    "TCB",
     "CTG",
+    "SSI",
+    "VCI",
     "VND",
     "VIX",
-    "SSI",
     "MSN",
-    "KBC",
     "MWG",
-    "DXG",
     "HSG",
     "HPG",
     "FPT",
     "VIC",
-    "VHM"
+    "VHM",
+    "BAF"
   ],
   "PORT_CHINH": [
     "VNINDEX",
@@ -447,10 +449,12 @@
   ],
   "PORT_QH": [
     "VNINDEX",
-    "VIX",
-    "VND",
-    "TCB",
-    "CTG"
+    "MBB",
+    "LPB",
+    "VCI",
+    "SSI",
+    "VIC",
+    "BAF"
   ],
   "SUC_KHOE": [
     "VNINDEX",
