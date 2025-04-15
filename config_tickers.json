@@ -296,6 +296,7 @@
     "VCB",
     "TCB",
     "CTG",
+    "STB",
     "SSI",
     "VCI",
     "VND",
@@ -454,6 +455,8 @@
     "VCI",
     "SSI",
     "VIC",
+    "MWG",
+    "STB",
     "BAF"
   ],
   "SUC_KHOE": [
