@@ -308,7 +308,8 @@
     "FPT",
     "VIC",
     "VHM",
-    "BAF"
+    "BAF",
+    "VCG"
   ],
   "PORT_CHINH": [
     "VNINDEX",
@@ -450,14 +451,13 @@
   ],
   "PORT_QH": [
     "VNINDEX",
-    "MBB",
-    "LPB",
-    "VCI",
-    "SSI",
     "VIC",
     "MWG",
+    "VCI",
     "STB",
-    "BAF"
+    "MBB",
+    "VCG",
+    "HPG"
   ],
   "SUC_KHOE": [
     "VNINDEX",
