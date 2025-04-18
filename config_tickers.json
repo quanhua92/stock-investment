@@ -297,6 +297,7 @@
     "TCB",
     "CTG",
     "STB",
+    "SHB",
     "SSI",
     "VCI",
     "VND",
@@ -455,6 +456,7 @@
     "MWG",
     "VCI",
     "STB",
+    "SHB",
     "MBB",
     "VCG",
     "HPG"
