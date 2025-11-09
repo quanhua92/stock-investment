@@ -2,10 +2,7 @@ name: "Update stock data everyday"
 
 on:
   workflow_dispatch:
-  schedule:
-    -   cron: "30 4 * * *"
-    -   cron: "45 7 * * *"
-
+  
 jobs:
   export-jpegs:
     runs-on: ubuntu-latest
